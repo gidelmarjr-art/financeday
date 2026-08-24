@@ -1,0 +1,83 @@
+.flap-board {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.flap-tile {
+  background: linear-gradient(180deg, var(--color-panel-alt), var(--color-panel));
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 18px 16px;
+  min-width: 150px;
+  flex: 1 1 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.flap-tile--lg {
+  min-width: 190px;
+  padding: 24px 20px;
+}
+
+.flap-tile__seam {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.flap-tile__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.flap-tile__label span {
+  opacity: 0.6;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.flap-tile__value {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-gold);
+}
+
+.flap-tile--lg .flap-tile__value {
+  font-size: 34px;
+}
+
+.flap-char {
+  display: inline-block;
+  transition: transform 60ms linear;
+}
+
+.flap-char--active {
+  transform: translateY(-1px) scaleY(0.94);
+}
+
+.flap-tile__pct {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.flap-tile__pct.is-up {
+  color: var(--color-up);
+}
+
+.flap-tile__pct.is-down {
+  color: var(--color-down);
+}

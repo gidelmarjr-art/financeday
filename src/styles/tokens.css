@@ -1,0 +1,37 @@
+/* ------------------------------------------------------------------ */
+/*  Design tokens — FinanceDay                                         */
+/*  Paleta inspirada em painéis de câmbio mecânicos (split-flap)       */
+/* ------------------------------------------------------------------ */
+:root {
+  /* cor */
+  --color-bg: #0a0f1c;
+  --color-panel: #101828;
+  --color-panel-alt: #141d30;
+  --color-line: #232e45;
+  --color-text: #edeff3;
+  --color-text-dim: #8993ab;
+  --color-gold: #d4a94f;
+  --color-gold-dim: #8a7440;
+  --color-up: #3fb68b;
+  --color-down: #e2604f;
+
+  /* tipografia */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "Inter", sans-serif;
+
+  /* layout */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --max-width: 1180px;
+  --section-padding: clamp(64px, 9vw, 120px);
+
+  /* movimento */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-duration: 600ms;
+
+  /* elevação */
+  --shadow-glow: 0 0 80px rgba(212, 169, 79, 0.12);
+  --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.35);
+}

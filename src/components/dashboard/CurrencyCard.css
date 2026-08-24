@@ -1,0 +1,65 @@
+.currency-card {
+  text-align: left;
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  cursor: pointer;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  transition: border-color 150ms var(--ease-out), transform 150ms var(--ease-out);
+  width: 100%;
+}
+
+.currency-card:hover,
+.currency-card--selected {
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.currency-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.currency-card__code {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--color-text-dim);
+}
+
+.currency-card__name {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  margin-top: 2px;
+}
+
+.currency-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 3px 7px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.currency-card__badge.is-up {
+  color: var(--color-up);
+  background: rgba(63, 182, 139, 0.12);
+}
+
+.currency-card__badge.is-down {
+  color: var(--color-down);
+  background: rgba(226, 96, 79, 0.12);
+}
+
+.currency-card__value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 10px;
+}

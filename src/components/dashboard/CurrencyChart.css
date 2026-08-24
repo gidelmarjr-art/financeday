@@ -1,0 +1,56 @@
+.currency-chart {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.currency-chart__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.currency-chart__head h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.currency-chart__tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.currency-chart__tab {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--color-line);
+  background: transparent;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  transition: border-color 150ms var(--ease-out), color 150ms var(--ease-out);
+}
+
+.currency-chart__tab.is-active {
+  border-color: var(--color-gold);
+  background: rgba(212, 169, 79, 0.12);
+  color: var(--color-gold);
+}
+
+.currency-chart__hint {
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--color-gold-dim);
+}
+
+.currency-chart__canvas {
+  height: 240px;
+  margin-top: 16px;
+}
