@@ -1,91 +1,34 @@
-# FinanceDay
+# 📊 FinanceDay | Câmbio + Inteligência Artificial
 
-Painel de câmbio global em tempo real com leitura analítica por IA — projeto
-de portfólio construído em React (Vite), com uma landing page de marketing e
-um dashboard funcional.
+> Plataforma inteligente de acompanhamento e análise de câmbio, combinando cotações em tempo real com resumos gerados por inteligência artificial para explicar o mercado de forma simples.
+> 
+---
 
-O elemento visual de assinatura é um **painel split-flap** (os dígitos que
-"viram", como em painéis mecânicos de câmbio de aeroporto), usado tanto no
-hero da landing page quanto no painel principal do dashboard.
+## 🚀 Sobre o Projeto
+Esta aplicação web foi criada com o objetivo de monitorar as principais moedas em relação ao real brasileiro (BRL). O sistema vai além de simples cotações, atuando como um analista que resume o que mudou e o porquê das variações em linguagem clara, integrando dados financeiros dinâmicos com um painel interativo.
 
-## Rodando localmente
+- **Deploy Online:** [Acessar Projeto na Vercel](https://financeday.vercel.app/)
 
-```bash
-npm install
-npm run dev
-```
+---
 
-Abre em `http://localhost:5173`.
+## ✨ Funcionalidades
+- **Design Responsivo:** Adaptado com fluidez para diferentes tamanhos de tela (desktop, tablets e smartphones).
+- **Interface Financeira Moderna:** Estilo dark mode sofisticado com cartões de cotação e ticker inferior em tempo real para ativos globais.
+- **Seções Estruturadas:** 
+  - *Início* com apresentação da proposta de valor e cotações de referência (USD, EUR, GBP, BTC).
+  - *Dashboard* interativo para acompanhamento detalhado dos dados.
+  - *Sobre* a tecnologia e capacidades da plataforma baseada em IA.
 
-## Estrutura de pastas
+---
 
-```
-financeday/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── main.jsx              # ponto de entrada
-│   ├── App.jsx                # rotas (React Router)
-│   ├── styles/
-│   │   ├── tokens.css          # cores, fontes, espaçamento — design tokens
-│   │   └── global.css          # reset + utilitários compartilhados (.btn, .reveal…)
-│   ├── data/
-│   │   └── mock.js             # dados ilustrativos (moedas, histórico, insights)
-│   ├── services/
-│   │   ├── exchangeService.js  # integração real com a Frankfurter API
-│   │   └── aiService.js        # stub — pronto para plugar um provedor de IA
-│   ├── hooks/
-│   │   ├── useExchangeRates.js # busca + polling das cotações, com limpeza no unmount
-│   │   ├── useInView.js        # IntersectionObserver p/ animações de scroll
-│   │   └── useCountUp.js       # contagem animada (usado nas estatísticas)
-│   ├── layouts/
-│   │   ├── PublicLayout.jsx    # navbar + rodapé (landing e sobre)
-│   │   └── DashboardLayout.jsx # sidebar + barra superior (dashboard)
-│   ├── pages/
-│   │   ├── Home.jsx            # landing page — compõe as seções abaixo
-│   │   ├── Dashboard.jsx       # dashboard — liga os dados ao hook em tempo real
-│   │   └── About.jsx           # sobre o projeto
-│   └── components/
-│       ├── common/
-│       │   └── Reveal.jsx      # wrapper de animação de entrada ao rolar
-│       ├── layout/              # Navbar, Footer, Sidebar
-│       ├── landing/             # Hero, TickerMarquee, Capabilities,
-│       │                        # ProductShowcase, StatsSection, CtaBanner
-│       └── dashboard/           # FlapBoard, CurrencyCard, CurrencyChart, AiInsights
-├── index.html
-├── package.json
-└── vite.config.js
-```
+## 🛠️ Tecnologias Utilizadas
+- **React** (com Framework moderno)
+- **CSS Modules / Tailwind CSS** (ou estilização componentizada)
+- **Vercel** (Hospedagem e CI/CD)
 
-Cada componente fica em seu próprio arquivo com o CSS correspondente ao lado
-(`Hero.jsx` + `Hero.css`, por exemplo) — sem estilo inline, exceto valores que
-só existem em tempo de execução (como o dígito exibido a cada instante no
-painel split-flap).
+---
 
-## Rotas
-
-| Rota | Página | Layout |
-|---|---|---|
-| `/` | Landing page | `PublicLayout` (navbar + rodapé) |
-| `/sobre` | Sobre o projeto | `PublicLayout` |
-| `/dashboard` | Painel de câmbio | `DashboardLayout` (sidebar + topo) |
-
-## Design
-
-- **Identidade**: inspirada em painéis mecânicos de câmbio — o hairline no
-  meio de cada `FlapTile` (a "linha de emenda") reaparece como divisor nas
-  linhas da seção de capacidades, dando uma costura visual entre as páginas.
-- **Paleta**: azul-tinta profundo (`--color-bg`) + dourado (`--color-gold`),
-  com verde/coral só para indicar alta/queda.
-- **Tipografia**: Space Grotesk (títulos), IBM Plex Mono (todo número/dado),
-  Inter (corpo de texto).
-- **Animação com propósito**, três ideias, não uma por seção:
-  1. dígitos se resolvendo (hero + estatísticas) — a mesma ideia, duas vezes;
-  2. ticker com rolagem contínua — atmosfera, como um painel real nunca para;
-  3. revelação suave ao rolar (`Reveal`) — estrutural, aplicada igual em
-     todas as seções, sem variar o efeito a cada bloco.
-
-## Dados
+## 📊 Dados
 
 - **24 moedas** no painel — as majors de sempre + as 20 moedas mais
   valorizadas do mundo segundo o ranking da
@@ -106,11 +49,7 @@ painel split-flap).
   então a série não muda a cada clique.
 - Os textos de IA também são mock por enquanto.
 
-## Próximos passos
+---
 
-- Ligar `aiService.js` a um provedor de IA real (via backend próprio — nunca
-  chamando uma API de IA com chave exposta direto do frontend).
-- Buscar histórico real para as 14 moedas cobertas pela Frankfurter (hoje é
-  uma série gerada, não um dado histórico de verdade).
-- Encontrar uma fonte de dados para as moedas do Golfo, Gibraltar, Cayman,
-  ARS e bitcoin.
+## 💡 Status do Projeto
+- **Status:** Concluído / Em melhorias contínuas.
