@@ -63,3 +63,8 @@
   font-weight: 600;
   margin-top: 10px;
 }
+
+.currency-card__tag {
+  font-style: normal; font-family: var(--font-mono); font-size: 9.5px; margin-left: 6px;
+  color: var(--color-gold-dim); border: 1px solid var(--color-line); border-radius: 10px; padding: 1px 6px;
+}

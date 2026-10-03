@@ -1,0 +1,37 @@
+.cambio { display: flex; flex-direction: column; gap: 22px; max-width: 880px; }
+.cambio h1 { font-family: var(--font-display); font-size: 26px; margin: 2px 0 6px; }
+.cambio header p { margin: 0; color: var(--color-text-dim); font-size: 14px; }
+.cambio__card { background: var(--color-panel); border: 1px solid var(--color-line); border-radius: var(--radius-lg); padding: 22px; display: flex; flex-direction: column; gap: 18px; }
+.cambio__amount { display: flex; flex-direction: column; gap: 6px; }
+.cambio__amount span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-gold-dim); }
+.cambio__amount input {
+  background: var(--color-bg); border: 1px solid var(--color-line); border-radius: var(--radius-md); color: var(--color-text);
+  font-family: var(--font-display); font-size: 28px; font-weight: 600; padding: 12px 14px; width: 100%;
+}
+.cambio__amount input[aria-invalid="true"] { border-color: var(--color-down); }
+.cambio__pair { display: flex; align-items: flex-end; gap: 10px; }
+.cambio__swap {
+  flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--color-line);
+  background: var(--color-panel-alt); color: var(--color-gold); cursor: pointer; display: grid; place-items: center;
+  transition: transform 250ms var(--ease-out), border-color 150ms;
+}
+.cambio__swap:hover { border-color: var(--color-gold); transform: rotate(180deg); }
+.cambio__result {
+  background: var(--color-bg); border: 1px dashed var(--color-line); border-radius: var(--radius-md);
+  padding: 18px; display: flex; flex-direction: column; gap: 6px; min-height: 108px; justify-content: center;
+}
+.cambio__from { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-dim); }
+.cambio__result strong { font-family: var(--font-display); font-size: clamp(26px, 5vw, 38px); color: var(--color-gold); overflow-wrap: anywhere; }
+.cambio__result em { font-style: normal; font-size: 0.6em; color: var(--color-text-dim); }
+.cambio__rate, .cambio__hint { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-dim); }
+.cambio__quick { display: flex; flex-wrap: wrap; gap: 8px; }
+.cambio__quick button {
+  font-family: var(--font-mono); font-size: 12px; padding: 6px 12px; border-radius: 20px; background: transparent;
+  color: var(--color-text-dim); border: 1px solid var(--color-line); cursor: pointer;
+}
+.cambio__quick button:hover, .cambio__quick button.is-active { border-color: var(--color-gold); color: var(--color-gold); }
+@media (max-width: 560px) {
+  .cambio__pair { flex-direction: column; align-items: stretch; }
+  .cambio__swap { align-self: center; transform: rotate(90deg); }
+  .cambio__swap:hover { transform: rotate(270deg); }
+}

@@ -15,11 +15,18 @@ export default function CurrencyCard({ currency, selected, onSelect }) {
           <div className="currency-card__code">
             {flag} {code}
           </div>
-          <div className="currency-card__name">{name}</div>
+          <div className="currency-card__name">
+            {name}
+            {currency.live === false && <em className="currency-card__tag">ilustrativo</em>}
+          </div>
         </div>
         <div className={`currency-card__badge ${up ? "is-up" : "is-down"}`}>
-          {up ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
-          {Math.abs(pct).toFixed(2)}%
+          {pct == null ? "—" : (
+            <>
+              {up ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
+              {Math.abs(pct).toFixed(2)}%
+            </>
+          )}
         </div>
       </div>
       <div className="currency-card__value">R$ {value}</div>

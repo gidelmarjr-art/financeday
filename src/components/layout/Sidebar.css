@@ -103,3 +103,5 @@
     z-index: 55;
   }
 }
+
+.sidebar__item.is-active { background: rgba(212, 169, 79, 0.12); color: var(--color-gold); }
