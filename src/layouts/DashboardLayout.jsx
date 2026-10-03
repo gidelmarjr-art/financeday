@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Menu, Search, Clock3, Circle } from "lucide-react";
 import Sidebar from "../components/layout/Sidebar";
-import { MarketProvider } from "../context/MarketContext";
 import "./DashboardLayout.css";
 
 const TITLES = {
@@ -33,7 +32,6 @@ export default function DashboardLayout() {
   });
 
   return (
-    <MarketProvider>
     <div className="dashboard-layout">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
@@ -78,6 +76,5 @@ export default function DashboardLayout() {
         </div>
       </div>
     </div>
-    </MarketProvider>
   );
 }
