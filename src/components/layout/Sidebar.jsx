@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { Gauge, Coins, LineChart, Sparkles, ArrowLeft, X } from "lucide-react";
+import { Gauge, Coins, ArrowLeftRight, Bitcoin, ArrowLeft, X } from "lucide-react";
 import "./Sidebar.css";
 
 const NAV = [
-  { href: "#painel-principal", label: "Visão geral", icon: Gauge },
-  { href: "#todas-as-moedas", label: "Moedas", icon: Coins },
-  { href: "#historico", label: "Histórico", icon: LineChart },
-  { href: "#insights-ia", label: "Insights de IA", icon: Sparkles },
+  { to: "/dashboard", label: "Visão geral", icon: Gauge, end: true },
+  { to: "/dashboard/cambio", label: "Câmbio", icon: ArrowLeftRight },
+  { to: "/dashboard/moedas", label: "Moedas", icon: Coins },
+  { to: "/dashboard/criptomoedas", label: "Criptomoedas", icon: Bitcoin },
 ];
 
 export default function Sidebar({ open, onClose }) {
@@ -23,11 +23,17 @@ export default function Sidebar({ open, onClose }) {
         </div>
 
         <nav className="sidebar__nav">
-          {NAV.map(({ href, label, icon: Icon }) => (
-            <a key={href} href={href} className="sidebar__item" onClick={onClose}>
+          {NAV.map(({ to, label, icon: Icon, end }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              className={({ isActive }) => `sidebar__item ${isActive ? "is-active" : ""}`}
+              onClick={onClose}
+            >
               <Icon size={16} />
               {label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
