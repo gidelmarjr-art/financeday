@@ -114,3 +114,16 @@ painel split-flap).
   uma série gerada, não um dado histórico de verdade).
 - Encontrar uma fonte de dados para as moedas do Golfo, Gibraltar, Cayman,
   ARS e bitcoin.
+
+## Dashboard (abas)
+
+| Rota | Conteúdo |
+|---|---|
+| `/dashboard` | Visão geral: USD, EUR, GBP, BRL, CAD + BTC/ETH/SOL, gráfico comparado, maiores altas/quedas, leitura automática |
+| `/dashboard/cambio` | Conversor entre quaisquer duas moedas/criptos + histórico do par |
+| `/dashboard/moedas` | Todas as moedas, ordenação, busca e gráfico clicável |
+| `/dashboard/criptomoedas` | Top 20 por valor de mercado (CoinGecko), tabela com sparkline e gráfico clicável |
+
+Fontes: Frankfurter (BCE), open.er-api.com (KWD, ARS), CoinGecko (cripto).
+Dados compartilhados via `src/context/MarketContext.jsx`; históricos em `src/services/historyService.js`.
+Se uma API falhar, a interface cai para dados ilustrativos e avisa na tela.
