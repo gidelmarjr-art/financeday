@@ -26,6 +26,7 @@
 
 @media (max-width: 1100px) { .dash__kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .dash__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .dash__grid { grid-template-columns: 1fr; } .dash__status p { text-align: left; } .dash__kpis { gap: 10px; } }
+<<<<<<< HEAD
 
 /* Entrada orquestrada (só na 1ª visita da sessão): blocos em sequência, 80ms entre eles */
 .dash.is-intro .dash__intro { animation: surge 0.7s var(--ease-out) backwards; }
@@ -34,3 +35,5 @@
 .dash.is-intro .dash__grid > :nth-child(1) { animation: surge 0.7s var(--ease-out) backwards; animation-delay: 800ms; }
 .dash.is-intro .dash__grid > :nth-child(2) { animation: surge 0.7s var(--ease-out) backwards; animation-delay: 880ms; }
 .dash.is-intro .dash__grid > :nth-child(3) { animation: surge 0.7s var(--ease-out) backwards; animation-delay: 960ms; }
+=======
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672

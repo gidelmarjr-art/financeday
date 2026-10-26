@@ -1,4 +1,5 @@
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
+<<<<<<< HEAD
 import { useCountUp } from "../../hooks/useCountUp";
 import FlashValue from "../common/FlashValue";
 import "./StatCard.css";
@@ -15,13 +16,26 @@ export default function StatCard({ icon, label, value, amount, format, pct, capt
   return (
     <Tag className={`stat-card ${active ? "is-active" : ""}`} onClick={onClick} type={onClick ? "button" : undefined}
       style={index != null ? { "--i": index } : undefined}>
+=======
+import "./StatCard.css";
+
+export default function StatCard({ icon, label, value, pct, caption, active, onClick, tag }) {
+  const up = (pct ?? 0) >= 0;
+  const Tag = onClick ? "button" : "div";
+  return (
+    <Tag className={`stat-card ${active ? "is-active" : ""}`} onClick={onClick} type={onClick ? "button" : undefined}>
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
       <div className="stat-card__top">
         <span className="stat-card__icon">{icon}</span>
         {tag && <span className="stat-card__tag">{tag}</span>}
       </div>
       <div className="stat-card__label">{label}</div>
       <div className="stat-card__row">
+<<<<<<< HEAD
         <span className="stat-card__value"><FlashValue value={amount}>{display}</FlashValue></span>
+=======
+        <span className="stat-card__value">{value}</span>
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
         {pct != null && (
           <span className={`stat-card__pill ${up ? "is-up" : "is-down"}`}>
             {up ? <ArrowUpRight size={11} /> : <ArrowDownRight size={11} />}

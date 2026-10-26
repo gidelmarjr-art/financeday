@@ -2,7 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
 import AssetChart from "../components/dashboard/AssetChart";
 import Flag from "../components/common/Flag";
+<<<<<<< HEAD
 import FlashValue from "../components/common/FlashValue";
+=======
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
 import Sparkline from "../components/dashboard/Sparkline";
 import { useMarket } from "../context/MarketContext";
 import { useFiatTrends } from "../hooks/useFiatTrends";
@@ -92,6 +95,7 @@ export default function Moedas() {
                       {c.live === false && <em className="currency-card__tag">ilustrativo</em>}
                     </span>
                   </td>
+<<<<<<< HEAD
                   <td className="r mono"><FlashValue value={c.value}>R$ {formatNumber(c.value, 4)}</FlashValue></td>
                   <td className="r mono"><Pct v={c.pct} /></td>
                   <td className="r mono">{loading ? <i className="shimmer shimmer--pill" /> : <Pct v={t?.pct7d} />}</td>
@@ -99,6 +103,15 @@ export default function Moedas() {
                   <td className="r mono hide-md">{t ? `R$ ${formatNumber(t.high, 4)}` : "—"}</td>
                   <td className="r mono hide-md">{t ? `R$ ${formatNumber(t.low, 4)}` : "—"}</td>
                   <td className="hide-sm"><Sparkline data={t?.spark} up={(t?.pct30d ?? c.pct ?? 0) >= 0} delay={Math.min(i, 12) * 40} /></td>
+=======
+                  <td className="r mono">R$ {formatNumber(c.value, 4)}</td>
+                  <td className="r mono"><Pct v={c.pct} /></td>
+                  <td className="r mono">{loading ? <span className="muted">…</span> : <Pct v={t?.pct7d} />}</td>
+                  <td className="r mono hide-md">{loading ? <span className="muted">…</span> : <Pct v={t?.pct30d} />}</td>
+                  <td className="r mono hide-md">{t ? `R$ ${formatNumber(t.high, 4)}` : "—"}</td>
+                  <td className="r mono hide-md">{t ? `R$ ${formatNumber(t.low, 4)}` : "—"}</td>
+                  <td className="hide-sm"><Sparkline data={t?.spark} up={(t?.pct30d ?? c.pct ?? 0) >= 0} /></td>
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
                 </tr>
               );
             })}

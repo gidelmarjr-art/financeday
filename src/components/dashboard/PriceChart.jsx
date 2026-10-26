@@ -48,7 +48,11 @@ export default function PriceChart({
       )}
 
       <div className="price-chart__canvas" style={{ height }}>
+<<<<<<< HEAD
         {loading && <div className="shimmer price-chart__skeleton" role="status" aria-label="Carregando histórico" />}
+=======
+        {loading && <div className="price-chart__loading">carregando histórico…</div>}
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
         {!loading && (
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
@@ -77,9 +81,13 @@ export default function PriceChart({
                 labelFormatter={(ts) => new Date(ts).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: days <= 30 ? "short" : undefined })}
                 formatter={(v) => [fmt(v), "Cotação"]}
               />
+<<<<<<< HEAD
               <Area type="monotone" dataKey="v" stroke={color} strokeWidth={2} fill={`url(#${gid})`}
                 isAnimationActive={!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches}
                 animationDuration={900} animationEasing="ease-out" />
+=======
+              <Area type="monotone" dataKey="v" stroke={color} strokeWidth={2} fill={`url(#${gid})`} isAnimationActive={false} />
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
             </AreaChart>
           </ResponsiveContainer>
         )}

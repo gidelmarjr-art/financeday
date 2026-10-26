@@ -21,4 +21,7 @@
 .cta__btn:hover { transform: translateX(-50%) translateY(-2px); }
 
 @media (max-width: 640px) { .cta__preview { max-height: 400px; } .cta__btn { bottom: 24px; } }
+<<<<<<< HEAD
 .cta__btn:active { transform: translateX(-50%) scale(0.96); }
+=======
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672

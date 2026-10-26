@@ -123,5 +123,9 @@
   }
 }
 
+<<<<<<< HEAD
 .sidebar__item.is-active { color: var(--color-gold); }
 .sidebar__item.is-active:hover { background: transparent; }
+=======
+.sidebar__item.is-active { background: rgba(212, 169, 79, 0.12); color: var(--color-gold); }
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672

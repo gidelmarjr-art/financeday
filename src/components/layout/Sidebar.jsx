@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { NavLink, useLocation } from "react-router-dom";
+=======
+import { NavLink } from "react-router-dom";
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
 import { Gauge, Coins, ArrowLeftRight, Bitcoin, ArrowLeft, X } from "lucide-react";
 import "./Sidebar.css";
 
@@ -24,8 +28,12 @@ export default function Sidebar({ open, onClose }) {
           </button>
         </div>
 
+<<<<<<< HEAD
         <nav className="sidebar__nav" style={{ "--i": Math.max(activeIndex, 0) }}>
           <span className="sidebar__indicator" style={{ opacity: activeIndex < 0 ? 0 : 1 }} aria-hidden="true" />
+=======
+        <nav className="sidebar__nav">
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
           {NAV.map(({ to, label, icon: Icon, end }) => (
             <NavLink
               key={to}

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useEffect, useMemo, useRef, useState } from "react";
+=======
+import { useMemo, useState } from "react";
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
 import { useNavigate } from "react-router-dom";
 import { Banknote, Euro, PoundSterling, DollarSign, Bitcoin, Coins, CircleDollarSign } from "lucide-react";
 import StatCard from "../components/dashboard/StatCard";
@@ -8,8 +12,12 @@ import MoversList from "../components/dashboard/MoversList";
 import AiInsights from "../components/dashboard/AiInsights";
 import { useMarket } from "../context/MarketContext";
 import { OVERVIEW_FIAT, OVERVIEW_CRYPTO } from "../data/catalog";
+<<<<<<< HEAD
 import { formatNumber, formatBRL, smartDecimals } from "../utils/format";
 import { intro } from "../utils/intro";
+=======
+import { formatNumber, formatBRL } from "../utils/format";
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
 import { formatAsOfDate } from "../utils/liveData";
 import { buildInsights } from "../utils/insights";
 import "./Dashboard.css";
@@ -24,11 +32,14 @@ export default function Dashboard() {
   const [days, setDays] = useState(30);
   const [focus, setFocus] = useState(null);
 
+<<<<<<< HEAD
   // Entrada orquestrada: uma vez por sessão (depois, trocar de aba não repete).
   const [playIntro] = useState(() => !intro.played);
   const introEnd = useRef(Date.now() + 700);
   useEffect(() => () => { intro.played = true; }, []);
 
+=======
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
   const fiatPicks = OVERVIEW_FIAT.map((c) => byKey[c]).filter(Boolean);
   const cryptoPicks = OVERVIEW_CRYPTO.map((id) => byKey[`crypto:${id}`]).filter(Boolean);
   const chartAssets = group === "fiat" ? fiatPicks : cryptoPicks;
@@ -53,7 +64,11 @@ export default function Dashboard() {
   ].filter(Boolean);
 
   return (
+<<<<<<< HEAD
     <div className={`dash ${playIntro ? "is-intro" : ""}`}>
+=======
+    <div className="dash">
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
       <header className="dash__intro">
         <div>
           <span className="section-eyebrow">Visão geral</span>
@@ -69,6 +84,7 @@ export default function Dashboard() {
       </header>
 
       <section className="dash__kpis" aria-label="Cotações em destaque">
+<<<<<<< HEAD
         {cards.map(({ a, label, icon: Icon, isBrl }, i) => (
           <StatCard
             key={a.key}
@@ -77,6 +93,13 @@ export default function Dashboard() {
             label={`${a.code} · ${label}`}
             amount={isBrl ? a.usdValue : a.value}
             format={isBrl ? (v) => `US$ ${formatNumber(v, 4)}` : (v) => formatBRL(v, smartDecimals(a.value))}
+=======
+        {cards.map(({ a, label, icon: Icon, isBrl }) => (
+          <StatCard
+            key={a.key}
+            icon={<Icon size={16} />}
+            label={`${a.code} · ${label}`}
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
             value={isBrl ? `US$ ${formatNumber(a.usdValue, 4)}` : formatBRL(a.value)}
             pct={a.pct}
             tag={a.live === false ? "ilustrativo" : null}
@@ -102,7 +125,11 @@ export default function Dashboard() {
             <button className="btn btn--ghost dash__cta" onClick={() => navigate("/dashboard/cambio")}>Converter valores</button>
           </div>
         </div>
+<<<<<<< HEAD
         <CompareChart key={group} assets={chartAssets} days={days} focus={focus} onFocus={setFocus} notBefore={playIntro ? introEnd.current : 0} />
+=======
+        <CompareChart key={group} assets={chartAssets} days={days} focus={focus} onFocus={setFocus} />
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
       </section>
 
       <section className="dash__grid">

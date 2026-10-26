@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useMemo, useRef, useState } from "react";
+=======
+import { useMemo, useState } from "react";
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 import { useSeriesMany } from "../../hooks/useSeries";
 import { toDailyGrid } from "../../services/historyService";
@@ -11,6 +15,7 @@ const dim = "var(--color-text-dim)";
 const tick = { fontFamily: "IBM Plex Mono, monospace", fontSize: 11, fill: dim };
 
 /** Variação % acumulada de vários ativos desde o início do período (base 0%). */
+<<<<<<< HEAD
 const reduced = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 export default function CompareChart({ assets, days, focus, onFocus, notBefore = 0 }) {
@@ -24,6 +29,13 @@ export default function CompareChart({ assets, days, focus, onFocus, notBefore =
 
   const { rows, estimatedAny } = useMemo(() => {
     const assets = assetsRef.current;
+=======
+export default function CompareChart({ assets, days, focus, onFocus }) {
+  const [hidden, setHidden] = useState(() => new Set());
+  const { loading, data } = useSeriesMany(assets, days);
+
+  const { rows, estimatedAny } = useMemo(() => {
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
     if (loading || !assets.length) return { rows: [], estimatedAny: false };
     const grids = {};
     let est = false;
@@ -44,8 +56,12 @@ export default function CompareChart({ assets, days, focus, onFocus, notBefore =
       return row;
     });
     return { rows, estimatedAny: est };
+<<<<<<< HEAD
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, data, sig, days]);
+=======
+  }, [loading, data, assets, days]);
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
 
   const toggle = (key) =>
     setHidden((h) => {
@@ -75,7 +91,11 @@ export default function CompareChart({ assets, days, focus, onFocus, notBefore =
       </div>
 
       <div className="compare-chart__canvas">
+<<<<<<< HEAD
         {loading && <div className="shimmer compare-chart__skeleton" role="status" aria-label="Carregando histórico" />}
+=======
+        {loading && <div className="compare-chart__loading">carregando histórico…</div>}
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
         {!loading && (
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={rows} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
@@ -97,8 +117,12 @@ export default function CompareChart({ assets, days, focus, onFocus, notBefore =
                     stroke={SERIES_COLORS[i % SERIES_COLORS.length]}
                     strokeWidth={focus && focus !== a.key ? 1.2 : 2}
                     strokeOpacity={focus && focus !== a.key ? 0.35 : 1}
+<<<<<<< HEAD
                     isAnimationActive={!reduced()} animationDuration={1300} animationEasing="ease-out"
                     animationBegin={Math.max(0, notBefore - Date.now())} />
+=======
+                    isAnimationActive={false} />
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
                 )
               )}
             </LineChart>

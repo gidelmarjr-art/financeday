@@ -16,18 +16,30 @@
 .cambio__amount input[aria-invalid="true"] { border-color: var(--color-down); }
 .cambio__pair { display: flex; flex-direction: column; gap: 6px; }
 .cambio__swap {
+<<<<<<< HEAD
   align-self: center; margin: 2px 0; transform: rotate(calc(90deg + var(--spin, 0) * 180deg)); flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--color-line);
   background: var(--color-panel-alt); color: var(--color-gold); cursor: pointer; display: grid; place-items: center;
   transition: transform 600ms var(--ease-spring), border-color 150ms;
 }
 .cambio__swap:hover { border-color: var(--color-gold); }
 .cambio__swap:active { scale: 0.92; }
+=======
+  align-self: center; margin: 2px 0; transform: rotate(90deg); flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--color-line);
+  background: var(--color-panel-alt); color: var(--color-gold); cursor: pointer; display: grid; place-items: center;
+  transition: transform 250ms var(--ease-out), border-color 150ms;
+}
+.cambio__swap:hover { border-color: var(--color-gold); transform: rotate(270deg); }
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
 .cambio__result {
   background: var(--color-bg); border: 1px dashed var(--color-line); border-radius: var(--radius-md);
   padding: 18px; display: flex; flex-direction: column; gap: 6px; min-height: 108px; justify-content: center;
 }
 .cambio__from { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-dim); }
+<<<<<<< HEAD
 .cambio__result strong { font-variant-numeric: tabular-nums; font-family: var(--font-display); font-size: clamp(26px, 5vw, 38px); color: var(--color-gold); overflow-wrap: anywhere; }
+=======
+.cambio__result strong { font-family: var(--font-display); font-size: clamp(26px, 5vw, 38px); color: var(--color-gold); overflow-wrap: anywhere; }
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
 .cambio__result em { font-style: normal; font-size: 0.6em; color: var(--color-text-dim); }
 .cambio__rate, .cambio__hint { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-dim); }
 .cambio__quick { display: flex; flex-wrap: wrap; gap: 8px; }

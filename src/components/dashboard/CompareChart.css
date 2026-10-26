@@ -9,4 +9,11 @@
 .compare-chart__chip.is-off { opacity: 0.4; text-decoration: line-through; }
 .compare-chart__warn { font-family: var(--font-mono); font-size: 11px; color: var(--color-gold-dim); }
 .compare-chart__canvas { height: 300px; margin-top: 14px; position: relative; }
+<<<<<<< HEAD
 .compare-chart__skeleton { position: absolute; inset: 0; border-radius: 12px; }
+=======
+.compare-chart__loading {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 12px; color: var(--color-text-dim);
+}
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
