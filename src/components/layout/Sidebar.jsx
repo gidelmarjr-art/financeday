@@ -1,43 +1,45 @@
-import { NavLink } from "react-router-dom";
-import { Gauge, Coins, LineChart, Sparkles, ArrowLeft, X } from "lucide-react";
+import { NavLink, useLocation } from "react-router-dom";
+import { Gauge, Coins, ArrowLeftRight, Bitcoin, ArrowLeft } from "lucide-react";
 import "./Sidebar.css";
 
 const NAV = [
-  { href: "#painel-principal", label: "Visão geral", icon: Gauge },
-  { href: "#todas-as-moedas", label: "Moedas", icon: Coins },
-  { href: "#historico", label: "Histórico", icon: LineChart },
-  { href: "#insights-ia", label: "Insights de IA", icon: Sparkles },
+  { to: "/dashboard", label: "Visão geral", icon: Gauge, end: true },
+  { to: "/dashboard/cambio", label: "Câmbio", icon: ArrowLeftRight },
+  { to: "/dashboard/moedas", label: "Moedas", icon: Coins },
+  { to: "/dashboard/criptomoedas", label: "Criptomoedas", icon: Bitcoin },
 ];
 
-export default function Sidebar({ open, onClose }) {
+/** Menu flutuante em pílula (só ícones; nome em tooltip). No celular vira barra inferior. */
+export default function Sidebar() {
+  const { pathname } = useLocation();
+  const activeIndex = NAV.findIndex((n) => (n.end ? pathname === n.to : pathname.startsWith(n.to)));
+
   return (
-    <>
-      <aside className={`sidebar ${open ? "sidebar--open" : ""}`}>
-        <div className="sidebar__top">
-          <NavLink to="/" className="sidebar__logo">
-            Finance<span>Day</span>
+    <aside className="sidebar" aria-label="Navegação do painel">
+      <NavLink to="/" className="sidebar__logo" aria-label="FinanceDay — voltar ao site">
+        F<span className="sidebar__tip">Voltar ao site</span>
+      </NavLink>
+
+      <nav className="sidebar__nav" style={{ "--i": Math.max(activeIndex, 0) }}>
+        <span className="sidebar__indicator" style={{ opacity: activeIndex < 0 ? 0 : 1 }} aria-hidden="true" />
+        {NAV.map(({ to, label, icon: Icon, end }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
+            aria-label={label}
+            className={({ isActive }) => `sidebar__item ${isActive ? "is-active" : ""}`}
+          >
+            <Icon size={20} />
+            <span className="sidebar__tip">{label}</span>
           </NavLink>
-          <button className="sidebar__close" aria-label="Fechar menu" onClick={onClose}>
-            <X size={18} />
-          </button>
-        </div>
+        ))}
+      </nav>
 
-        <nav className="sidebar__nav">
-          {NAV.map(({ href, label, icon: Icon }) => (
-            <a key={href} href={href} className="sidebar__item" onClick={onClose}>
-              <Icon size={16} />
-              {label}
-            </a>
-          ))}
-        </nav>
-
-        <NavLink to="/" className="sidebar__back">
-          <ArrowLeft size={15} />
-          Voltar ao site
-        </NavLink>
-      </aside>
-
-      {open && <div className="sidebar__scrim" onClick={onClose} />}
-    </>
+      <NavLink to="/" className="sidebar__back" aria-label="Voltar ao site">
+        <ArrowLeft size={18} />
+        <span className="sidebar__tip">Voltar ao site</span>
+      </NavLink>
+    </aside>
   );
 }
