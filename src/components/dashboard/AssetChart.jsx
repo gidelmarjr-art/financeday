@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useMemo, useState } from "react";
 import PriceChart from "./PriceChart";
 import { useSeries } from "../../hooks/useSeries";

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .cta { padding: var(--section-padding) 0; }
 
 .cta__head { text-align: center; max-width: 640px; margin: 0 auto 36px; }
@@ -22,3 +23,6 @@
 
 @media (max-width: 640px) { .cta__preview { max-height: 400px; } .cta__btn { bottom: 24px; } }
 .cta__btn:active { transform: translateX(-50%) scale(0.96); }
+=======
+asasasa
+>>>>>>> d843f690e7f9b9075342e6e1d2ddff89099ba71b
