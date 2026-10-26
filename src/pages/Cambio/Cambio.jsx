@@ -1,14 +1,14 @@
 import { useMemo, useState } from "react";
 import { ArrowLeftRight, Repeat, TrendingUp, TrendingDown } from "lucide-react";
-import AssetCombobox from "../components/dashboard/AssetCombobox";
-import StatCard from "../components/dashboard/StatCard";
-import PriceChart from "../components/dashboard/PriceChart";
-import { useMarket } from "../context/MarketContext";
-import { useSeriesMany } from "../hooks/useSeries";
-import { useCountUp } from "../hooks/useCountUp";
-import FlashValue from "../components/common/FlashValue";
-import { toDailyGrid } from "../services/historyService";
-import { formatNumber, smartDecimals } from "../utils/format";
+import AssetCombobox from "../../components/dashboard/AssetCombobox";
+import StatCard from "../../components/dashboard/StatCard";
+import PriceChart from "../../components/dashboard/PriceChart";
+import { useMarket } from "../../context/MarketContext";
+import { useSeriesMany } from "../../hooks/useSeries";
+import { useCountUp } from "../../hooks/useCountUp";
+import FlashValue from "../../components/common/FlashValue";
+import { toDailyGrid } from "../../services/historyService";
+import { formatNumber, smartDecimals } from "../../utils/format";
 import "./Cambio.css";
 
 const QUICK = [

@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
-import AssetChart from "../components/dashboard/AssetChart";
-import FlashValue from "../components/common/FlashValue";
-import Sparkline from "../components/dashboard/Sparkline";
-import { useMarket } from "../context/MarketContext";
-import { formatBRL, formatCompact, formatPct } from "../utils/format";
+import AssetChart from "../../components/dashboard/AssetChart";
+import FlashValue from "../../components/common/FlashValue";
+import Sparkline from "../../components/dashboard/Sparkline";
+import { useMarket } from "../../context/MarketContext";
+import { formatBRL, formatCompact, formatPct } from "../../utils/format";
 import "./Listing.css";
 
 const SORTS = {
