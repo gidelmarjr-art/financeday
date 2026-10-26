@@ -90,3 +90,16 @@ export async function fetchRatesWithChange(base = "BRL", symbols = []) {
 
   return { asOf: latest.date, rates };
 }
+
+/**
+ * Moedas fora da referência do BCE e sem peg exato (KWD, ARS): open.er-api.com
+ * (gratuita, sem chave). Devolve { KWD: <BRL por 1 KWD>, ... }.
+ */
+export async function fetchExtraRates(codes) {
+  const res = await fetch("https://open.er-api.com/v6/latest/BRL");
+  if (!res.ok) throw new Error(`er-api respondeu ${res.status}`);
+  const data = await res.json();
+  return Object.fromEntries(
+    codes.filter((c) => data.rates?.[c]).map((c) => [c, 1 / data.rates[c]])
+  );
+}
