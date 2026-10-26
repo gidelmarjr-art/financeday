@@ -1,7 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
 import AssetChart from "../components/dashboard/AssetChart";
+<<<<<<< HEAD
 import FlashValue from "../components/common/FlashValue";
+=======
+<<<<<<< HEAD
+import FlashValue from "../components/common/FlashValue";
+=======
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
 import Sparkline from "../components/dashboard/Sparkline";
 import { useMarket } from "../context/MarketContext";
 import { formatBRL, formatCompact, formatPct } from "../utils/format";
@@ -68,7 +75,15 @@ export default function Criptomoedas() {
             </tr>
           </thead>
           <tbody>
+<<<<<<< HEAD
             {rows.map((c, i) => (
+=======
+<<<<<<< HEAD
+            {rows.map((c, i) => (
+=======
+            {rows.map((c) => (
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
               <tr key={c.key} className={selected === c.key ? "is-selected" : ""}
                   onClick={() => setSelected(c.key)} tabIndex={0}
                   onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setSelected(c.key)}>
@@ -79,12 +94,28 @@ export default function Criptomoedas() {
                     <strong>{c.name}</strong><em>{c.code}</em>
                   </span>
                 </td>
+<<<<<<< HEAD
                 <td className="r mono"><FlashValue value={c.brl}>{formatBRL(c.brl)}</FlashValue></td>
+=======
+<<<<<<< HEAD
+                <td className="r mono"><FlashValue value={c.brl}>{formatBRL(c.brl)}</FlashValue></td>
+=======
+                <td className="r mono">{formatBRL(c.brl)}</td>
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
                 <td className="r mono"><Pct v={c.pct} /></td>
                 <td className="r mono"><Pct v={c.pct7d} /></td>
                 <td className="r mono hide-md">{c.marketCap ? `R$ ${formatCompact(c.marketCap)}` : "—"}</td>
                 <td className="r mono hide-md">{c.volume ? `R$ ${formatCompact(c.volume)}` : "—"}</td>
+<<<<<<< HEAD
                 <td className="hide-sm"><Sparkline data={c.spark} up={(c.pct7d ?? c.pct) >= 0} delay={Math.min(i, 12) * 40} /></td>
+=======
+<<<<<<< HEAD
+                <td className="hide-sm"><Sparkline data={c.spark} up={(c.pct7d ?? c.pct) >= 0} delay={Math.min(i, 12) * 40} /></td>
+=======
+                <td className="hide-sm"><Sparkline data={c.spark} up={(c.pct7d ?? c.pct) >= 0} /></td>
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
               </tr>
             ))}
           </tbody>

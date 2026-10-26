@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+<<<<<<< HEAD
 import { Search, Clock3, Circle } from "lucide-react";
+=======
+import { Menu, Search, Clock3, Circle } from "lucide-react";
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
 import Sidebar from "../components/layout/Sidebar";
 import "./DashboardLayout.css";
 
@@ -13,6 +17,10 @@ const TITLES = {
 const SEARCHABLE = ["/dashboard/moedas", "/dashboard/criptomoedas"];
 
 export default function DashboardLayout() {
+<<<<<<< HEAD
+=======
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
   const [query, setQuery] = useState("");
   const { pathname } = useLocation();
 
@@ -37,6 +45,16 @@ export default function DashboardLayout() {
       <div className="dashboard-layout__main">
         <header className="dashboard-topbar">
           <div className="dashboard-topbar__left">
+<<<<<<< HEAD
+=======
+            <button
+              className="dashboard-topbar__menu"
+              aria-label="Abrir menu"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <Menu size={18} />
+            </button>
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
             <span className="dashboard-topbar__title">{TITLES[pathname] ?? "Dashboard"}</span>
           </div>
 

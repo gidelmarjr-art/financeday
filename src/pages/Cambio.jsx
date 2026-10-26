@@ -5,8 +5,16 @@ import StatCard from "../components/dashboard/StatCard";
 import PriceChart from "../components/dashboard/PriceChart";
 import { useMarket } from "../context/MarketContext";
 import { useSeriesMany } from "../hooks/useSeries";
+<<<<<<< HEAD
 import { useCountUp } from "../hooks/useCountUp";
 import FlashValue from "../components/common/FlashValue";
+=======
+<<<<<<< HEAD
+import { useCountUp } from "../hooks/useCountUp";
+import FlashValue from "../components/common/FlashValue";
+=======
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
 import { toDailyGrid } from "../services/historyService";
 import { formatNumber, smartDecimals } from "../utils/format";
 import "./Cambio.css";
@@ -39,6 +47,10 @@ export default function Cambio() {
   const rate = a && b ? a.brl / b.brl : null;
   const result = rate != null && Number.isFinite(amount) ? amount * rate : null;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
   const [spin, setSpin] = useState(0);
   const swap = () => { setFrom(to); setTo(from); setSpin((n) => n + 1); };
 
@@ -46,6 +58,12 @@ export default function Cambio() {
   const pairKey = `${from}>${to}`;
   const shown = useCountUp(result ?? 0, { duration: 900, animateKey: pairKey });
   const resultDec = result != null ? smartDecimals(result) : 2;
+<<<<<<< HEAD
+=======
+=======
+  const swap = () => { setFrom(to); setTo(from); };
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
 
   const pair = useSeriesMany(a && b && a.key !== b.key ? [a, b] : [], days);
   const pairData = useMemo(() => {
@@ -56,8 +74,17 @@ export default function Cambio() {
     const ga = toDailyGrid(ra.points, days);
     const gb = toDailyGrid(rb.points, days);
     return { points: ga.map((p, i) => ({ ts: p.ts, v: p.v / gb[i].v })), estimated: ra.estimated || rb.estimated };
+<<<<<<< HEAD
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pair.loading, pair.data, a?.key, b?.key, days]);
+=======
+<<<<<<< HEAD
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pair.loading, pair.data, a?.key, b?.key, days]);
+=======
+  }, [pair, a, b, days]);
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
 
   const dec = rate != null ? smartDecimals(rate) : 4;
 
@@ -90,7 +117,15 @@ export default function Cambio() {
 
         <div className="cambio__pair">
           <AssetCombobox id="from" label="De" value={from} onChange={setFrom} fiat={fiatOptions} crypto={crypto} />
+<<<<<<< HEAD
           <button className="cambio__swap" style={{ "--spin": spin }} onClick={swap} aria-label="Inverter moedas" title="Inverter">
+=======
+<<<<<<< HEAD
+          <button className="cambio__swap" style={{ "--spin": spin }} onClick={swap} aria-label="Inverter moedas" title="Inverter">
+=======
+          <button className="cambio__swap" onClick={swap} aria-label="Inverter moedas" title="Inverter">
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
             <ArrowLeftRight size={18} />
           </button>
           <AssetCombobox id="to" label="Para" value={to} onChange={setTo} fiat={fiatOptions} crypto={crypto} />
@@ -102,7 +137,15 @@ export default function Cambio() {
           ) : (
             <>
               <span className="cambio__from">{formatNumber(amount)} {a.code} =</span>
+<<<<<<< HEAD
               <strong><FlashValue value={rate} resetKey={pairKey}>{formatNumber(shown, resultDec)}</FlashValue> <em>{b.code}</em></strong>
+=======
+<<<<<<< HEAD
+              <strong><FlashValue value={rate} resetKey={pairKey}>{formatNumber(shown, resultDec)}</FlashValue> <em>{b.code}</em></strong>
+=======
+              <strong>{formatNumber(result)} <em>{b.code}</em></strong>
+>>>>>>> 89542d2e6a081379cd193ccb1b467a4647ec5672
+>>>>>>> dba13872aee022118470970762b9ceeb24606272
               <span className="cambio__rate">
                 1 {a.code} = {formatNumber(rate, dec)} {b.code} · 1 {b.code} = {formatNumber(1 / rate, smartDecimals(1 / rate))} {a.code}
               </span>
