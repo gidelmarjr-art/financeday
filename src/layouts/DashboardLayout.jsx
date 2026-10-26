@@ -1,11 +1,23 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Menu, Search, Clock3, Circle } from "lucide-react";
 import Sidebar from "../components/layout/Sidebar";
 import "./DashboardLayout.css";
 
+const TITLES = {
+  "/dashboard": "Visão geral",
+  "/dashboard/cambio": "Câmbio",
+  "/dashboard/moedas": "Moedas",
+  "/dashboard/criptomoedas": "Criptomoedas",
+};
+const SEARCHABLE = ["/dashboard/moedas", "/dashboard/criptomoedas"];
+
 export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const { pathname } = useLocation();
+
+  useEffect(() => setQuery(""), [pathname]);
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -33,14 +45,21 @@ export default function DashboardLayout() {
             >
               <Menu size={18} />
             </button>
-            <span className="dashboard-topbar__title">Dashboard</span>
+            <span className="dashboard-topbar__title">{TITLES[pathname] ?? "Dashboard"}</span>
           </div>
 
           <div className="dashboard-topbar__right">
-            <div className="dashboard-topbar__search">
-              <Search size={14} />
-              <input placeholder="Buscar moeda…" />
-            </div>
+            {SEARCHABLE.includes(pathname) && (
+              <div className="dashboard-topbar__search">
+                <Search size={14} />
+                <input
+                  placeholder="Buscar…"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  aria-label="Buscar moeda"
+                />
+              </div>
+            )}
             <div className="dashboard-topbar__time">
               <Clock3 size={13} />
               {time}
@@ -53,7 +72,7 @@ export default function DashboardLayout() {
         </header>
 
         <div className="dashboard-layout__content">
-          <Outlet />
+          <Outlet context={{ query }} />
         </div>
       </div>
     </div>

@@ -38,16 +38,35 @@
 }
 
 .sidebar__nav {
+  --item: 40px;
+  --vao: 2px;
+  --passo: calc(var(--item) + var(--vao));
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--vao);
+}
+
+/* Um único elemento que desliza (só transform) entre os itens */
+.sidebar__indicator {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--item);
+  border-radius: var(--radius-sm);
+  background: rgba(212, 169, 79, 0.12);
+  box-shadow: inset 2px 0 0 var(--color-gold);
+  transform: translateY(calc(var(--i) * var(--passo)));
+  transition: transform 600ms var(--ease-spring), opacity 200ms;
 }
 
 .sidebar__item {
+  position: relative;
+  z-index: 1;
+  height: var(--item);
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
+  padding: 0 12px;
   border-radius: var(--radius-sm);
   font-size: 13.5px;
   color: var(--color-text-dim);
@@ -103,3 +122,6 @@
     z-index: 55;
   }
 }
+
+.sidebar__item.is-active { color: var(--color-gold); }
+.sidebar__item.is-active:hover { background: transparent; }

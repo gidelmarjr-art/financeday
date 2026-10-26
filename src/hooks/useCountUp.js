@@ -1,29 +1,42 @@
 import { useEffect, useRef, useState } from "react";
+import { intro } from "../utils/intro";
+
+const reducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 /**
- * Anima um número de 0 até `target` quando `start` se torna true.
- * Usado pelas estatísticas da landing page — a mesma ideia de "dígitos
- * chegando ao valor final" do painel split-flap, só que em números maiores.
+ * Número que sobe até `target` (ease-out) e, quando o alvo muda, continua de
+ * onde parou. Com `animateKey`, só anima quando a chave muda (ex.: trocar o par
+ * de moedas); mudanças do próprio valor (digitar, atualização de cotação)
+ * entram na hora — movimento nunca atrasa o uso.
  */
-export function useCountUp(target, start, duration = 1200) {
-  const [value, setValue] = useState(0);
-  const frame = useRef(null);
+export function useCountUp(target, { duration = 1100, animateKey } = {}) {
+  const reduced = reducedMotion();
+  const [value, setValue] = useState(reduced || intro.played || !Number.isFinite(target) ? target : 0);
+  const current = useRef(value);
+  const lastKey = useRef(animateKey);
+  const first = useRef(true);
 
   useEffect(() => {
-    if (!start) return;
-
-    const startTime = performance.now();
-
-    function tick(now) {
-      const progress = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      setValue(Math.round(target * eased));
-      if (progress < 1) frame.current = requestAnimationFrame(tick);
+    const sameKey = !first.current && animateKey !== undefined && lastKey.current === animateKey;
+    first.current = false;
+    lastKey.current = animateKey;
+    if (reduced || sameKey || !Number.isFinite(target)) {
+      current.current = target;
+      setValue(target);
+      return;
     }
-
-    frame.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame.current);
-  }, [start, target, duration]);
+    const from = current.current;
+    const start = performance.now();
+    let raf;
+    const step = (t) => {
+      const p = Math.min((t - start) / duration, 1);
+      current.current = from + (target - from) * (1 - (1 - p) ** 4);
+      setValue(current.current);
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target, duration, animateKey, reduced]);
 
   return value;
 }
