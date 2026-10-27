@@ -12,18 +12,33 @@ export default function HighlightCard({ asset, onOpen }) {
     <button type="button" className="bento-card highlight" onClick={onOpen}>
       <span className="highlight__glow" aria-hidden="true" />
       <header className="highlight__head">
-        <span className="highlight__icon"><Bitcoin size={17} /></span>
-        <span>{asset.name} · {asset.code}</span>
+        <span className="highlight__icon">
+          <Bitcoin size={17} />
+        </span>
+        <span>
+          {asset.name} · {asset.code}
+        </span>
       </header>
       <div className="highlight__value">
-        <CountValue amount={asset.value} format={(v) => formatBRL(v, smartDecimals(asset.value))} />
+        <CountValue
+          amount={asset.value}
+          format={(v) => formatBRL(v, smartDecimals(asset.value))}
+        />
       </div>
       <div className="highlight__row">
         <Pill pct={asset.pct} className="pill--onGold" />
         <span className="highlight__cap">em 24h</span>
       </div>
       <div className="highlight__spark">
-        <Sparkline data={asset.spark} up width={260} height={52} color="#1a1304" fluid delay={300} />
+        <Sparkline
+          data={asset.spark}
+          up
+          width={260}
+          height={52}
+          color="#1a1304"
+          fluid
+          delay={300}
+        />
         <span>últimos 7 dias</span>
       </div>
     </button>
