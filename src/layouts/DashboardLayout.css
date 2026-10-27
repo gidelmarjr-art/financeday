@@ -15,12 +15,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 18px 28px;
+  padding: 18px 28px 18px 104px; /* 104px = espaço da pílula flutuante */
   border-bottom: 1px solid var(--color-line);
   flex-wrap: wrap;
   position: sticky;
   top: 0;
-  background: var(--color-bg);
+  background: rgba(10, 15, 28, 0.82);
+  backdrop-filter: blur(10px);
   z-index: 10;
 }
 
@@ -70,7 +71,7 @@
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 13px;
-  width: 110px;
+  width: 130px;
 }
 
 .dashboard-topbar__time {
@@ -93,15 +94,24 @@
 
 .dashboard-layout__content {
   flex: 1;
-  padding: 28px;
+  padding: 28px 28px 28px 104px;
 }
 
 @media (max-width: 900px) {
-  .dashboard-topbar__menu {
-    display: block;
-  }
+  .dashboard-topbar { padding-left: 28px; }
+  .dashboard-layout__content { padding-left: 28px; }
+  .dashboard-layout__content { padding-bottom: 110px; } /* espaço da barra inferior */
 
   .dashboard-topbar__search {
     display: none;
   }
 }
+
+/* Cantos mais arredondados em todo o painel (estilo bento) */
+.dashboard-layout .stat-card,
+.dashboard-layout .price-chart,
+.dashboard-layout .crypto-table__wrap,
+.dashboard-layout .cambio__card,
+.dashboard-layout .movers,
+.dashboard-layout .ai-insights { border-radius: 24px; }
+@media (max-width: 640px) { .dashboard-layout__content { padding-left: 16px; padding-right: 16px; } .dashboard-topbar { padding: 14px 16px; } }

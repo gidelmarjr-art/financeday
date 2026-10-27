@@ -1,52 +1,45 @@
-.dashboard-page {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+.dash { display: flex; flex-direction: column; gap: 22px; }
+.dash__intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.dash__intro h1 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 42px); letter-spacing: -0.02em; margin: 2px 0 6px; }
+.dash__intro p { margin: 0; color: var(--color-text-dim); font-size: 14.5px; }
+.dash__status { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.dash__live { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--color-line); color: var(--color-text-dim); background: var(--color-panel); }
+.dash__live i { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--color-gold-dim); }
+.dash__live.is-live { color: var(--color-up); }
+.dash__live.is-live i { background: var(--color-up); }
+/* anel que cresce e some — só quando os dados estão ao vivo */
+.dash__live.is-live i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--color-up); animation: live-ping 1.8s var(--ease-out) infinite; }
+@keyframes live-ping { from { transform: scale(1); opacity: 0.8; } to { transform: scale(2.8); opacity: 0; } }
+.dash__status p { margin: 0; font-family: var(--font-mono); font-size: 11.5px; line-height: 1.5; text-align: right; }
+.dash__asof { color: var(--color-gold-dim); }
+.dash__warn { color: var(--color-down); }
+
+@media (min-width: 1320px) {
+  .bento { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .bento__hero { grid-column: 1 / span 5; grid-row: 1 / span 2; }
+  .bento__highlight { grid-column: 6 / span 4; grid-row: 1; }
+  .bento__mini { grid-column: span 2; }
+  .bento__bars { grid-column: 10 / span 3; grid-row: 1 / span 2; }
+  .bento__chart { grid-column: 1 / span 8; }
+  .bento__breadth { grid-column: 9 / span 4; }
+  .bento__third { grid-column: span 4; }
 }
 
-.dashboard-page__section > .section-eyebrow {
-  display: block;
-  margin-bottom: 12px;
-}
+/* ---------- painel do gráfico ---------- */
+.panel__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
+.panel__head h2 { font-family: var(--font-display); font-size: 17px; margin: 0; }
+.panel__head p { margin: 4px 0 0; font-size: 13px; color: var(--color-text-dim); }
+.panel__controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.seg { display: inline-flex; padding: 3px; border: 1px solid var(--color-line); border-radius: 20px; }
+.seg button { font-family: var(--font-mono); font-size: 12px; padding: 5px 12px; border-radius: 16px; border: none; background: transparent; color: var(--color-text-dim); cursor: pointer; }
+.seg button.is-active { background: rgba(212, 169, 79, 0.14); color: var(--color-gold); }
+.dashboard-page__footer { font-family: var(--font-mono); font-size: 11px; color: var(--color-gold-dim); text-align: center; padding-top: 8px; }
 
-.dashboard-page__notice {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--color-down);
-  margin: 0 0 12px;
-}
+/* ---------- entrada orquestrada (1ª visita da sessão): 80ms entre blocos ---------- */
+.dash.is-intro .dash__intro { animation: surge 0.7s var(--ease-out) backwards; }
+.dash.is-intro .bento__cell { animation: surge 0.7s var(--ease-out) backwards; animation-delay: calc(var(--i, 0) * 80ms + 80ms); }
 
-.dashboard-page__asof {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  line-height: 1.5;
-  color: var(--color-gold-dim);
-  max-width: 60ch;
-  margin: 0 0 12px;
-}
-
-.dashboard-page__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 20px;
-}
-
-.dashboard-page__cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
-}
-
-.dashboard-page__footer {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--color-gold-dim);
-  text-align: center;
-  padding-top: 12px;
-}
-
-@media (max-width: 860px) {
-  .dashboard-page__grid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 640px) {
+  .dash__status { align-items: flex-start; }
+  .dash__status p { text-align: left; }
 }
