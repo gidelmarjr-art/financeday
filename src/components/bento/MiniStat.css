@@ -1,6 +1,42 @@
-.bento-card.mini-stat { text-align: left; cursor: pointer; font-family: var(--font-body); color: var(--color-text); display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px; transition: transform 300ms var(--ease-spring), border-color 200ms; }
-.mini-stat:hover { transform: translateY(-3px); border-color: var(--color-gold-dim); }
-.mini-stat:active { transform: scale(0.97); }
-.mini-stat header { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--color-text-dim); }
-.mini-stat__value { font-family: var(--font-display); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
-.mini-stat__spark { width: 100%; margin-top: auto; }
+.bento-card.mini-stat {
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 18px;
+    transition: transform 300ms var(--ease-spring), border-color 200ms;
+}
+
+.mini-stat:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-gold-dim);
+}
+
+.mini-stat:active {
+    transform: scale(0.97);
+}
+
+.mini-stat header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-text-dim);
+}
+
+.mini-stat__value {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(19px, 1.9vw, 24px);
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+}
+
+.mini-stat__spark {
+    width: 100%;
+    margin-top: auto;
+}
