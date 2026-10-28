@@ -2,8 +2,20 @@
 // Golfo, Gibraltar, Ilhas Cayman, ARS e bitcoin — não têm referência do
 // BCE e continuam vindo de data/mock.js (ver services/exchangeService.js).
 export const LIVE_SYMBOLS = [
-  "USD", "EUR", "GBP", "CHF", "JPY", "CNY",
-  "CAD", "SGD", "AUD", "NZD", "ILS", "NOK", "MXN", "TRY",
+  "USD",
+  "EUR",
+  "GBP",
+  "CHF",
+  "JPY",
+  "CNY",
+  "CAD",
+  "SGD",
+  "AUD",
+  "NZD",
+  "ILS",
+  "NOK",
+  "MXN",
+  "TRY",
 ];
 
 /**

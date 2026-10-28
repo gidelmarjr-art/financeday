@@ -1,5 +1,8 @@
 const nf = (min, max) =>
-  new Intl.NumberFormat("pt-BR", { minimumFractionDigits: min, maximumFractionDigits: max });
+  new Intl.NumberFormat("pt-BR", {
+    minimumFractionDigits: min,
+    maximumFractionDigits: max,
+  });
 
 /** Escolhe casas decimais conforme a magnitude (centavos de cripto, iene, etc.). */
 export function smartDecimals(n) {
@@ -37,5 +40,8 @@ export function formatPct(p, withSign = true) {
 }
 
 export function formatShortDate(ts) {
-  return new Date(ts).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
+  return new Date(ts).toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+  });
 }
