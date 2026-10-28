@@ -7,7 +7,7 @@ import { MarketProvider } from "./context/MarketContext";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Cambio from "./pages/Cambio/Cambio";
 import Moedas from "./pages/Moedas/Moedas";
-import Criptomoedas from "./pages/Criptomoedas";
+import Criptomoedas from "./pages/Criptomoedas/Criptomoedas";
 
 export default function App() {
   return (
