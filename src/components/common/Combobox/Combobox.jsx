@@ -1,15 +1,29 @@
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import "./Combobox.css";
 
-const norm = (s = "") => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-const REDUCED = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+const norm = (s = "") =>
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+const REDUCED = () =>
+  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 // Ícone que "morfa" entre seta ↓, seta ↑ e X (o path anima via CSS `d`).
 function MorphIcon({ state }) {
   const d =
-    state === "x" ? "M 6 18 L 18 6 M 18 18 L 6 6"
-    : state === "up" ? "M 6 15 L 12 9 M 18 15 L 12 9"
-    : "M 6 9 L 12 15 M 18 9 L 12 15";
+    state === "x"
+      ? "M 6 18 L 18 6 M 18 18 L 6 6"
+      : state === "up"
+        ? "M 6 15 L 12 9 M 18 15 L 12 9"
+        : "M 6 9 L 12 15 M 18 9 L 12 15";
   return (
     <svg viewBox="0 0 24 24" className="cbx__morph" aria-hidden="true">
       <path d={d} />
@@ -41,7 +55,13 @@ function ripple(e) {
  * items: [{ value, label, description?, tag?, icon?, group? }]
  */
 export default function Combobox({
-  id, label, items, value, onChange, placeholder = "Selecionar…", emptyMessage = "Nada encontrado.",
+  id,
+  label,
+  items,
+  value,
+  onChange,
+  placeholder = "Selecionar…",
+  emptyMessage = "Nada encontrado.",
 }) {
   const uid = useId();
   const baseId = id ?? uid;
@@ -71,7 +91,9 @@ export default function Combobox({
   const options = useMemo(() => {
     if (!filtering) return items;
     const q = norm(query.trim());
-    return items.filter((i) => norm(i.label).includes(q) || norm(i.description).includes(q));
+    return items.filter(
+      (i) => norm(i.label).includes(q) || norm(i.description).includes(q),
+    );
   }, [items, query, filtering]);
 
   // Linhas = cabeçalhos de grupo + opções (índice só conta opções).
@@ -79,7 +101,8 @@ export default function Combobox({
     const out = [];
     let lastGroup;
     options.forEach((item, index) => {
-      if (item.group && item.group !== lastGroup) out.push({ type: "group", label: item.group });
+      if (item.group && item.group !== lastGroup)
+        out.push({ type: "group", label: item.group });
       lastGroup = item.group;
       out.push({ type: "opt", item, index });
     });
@@ -98,7 +121,9 @@ export default function Combobox({
     const above = r.top;
     const place = below < 300 && above > below ? "top" : "bottom";
     setPlacement(place);
-    setMaxH(Math.max(120, Math.min(300, (place === "bottom" ? below : above) - 24)));
+    setMaxH(
+      Math.max(120, Math.min(300, (place === "bottom" ? below : above) - 24)),
+    );
   }, []);
 
   const openList = useCallback(() => {
@@ -122,7 +147,8 @@ export default function Combobox({
 
   useEffect(() => {
     if (!open) return;
-    const onDown = (e) => box.current && !box.current.contains(e.target) && closeList();
+    const onDown = (e) =>
+      box.current && !box.current.contains(e.target) && closeList();
     document.addEventListener("mousedown", onDown);
     window.addEventListener("resize", measure);
     return () => {
@@ -133,7 +159,9 @@ export default function Combobox({
 
   useEffect(() => {
     if (open && active >= 0 && keyboard.current) {
-      document.getElementById(optId(active))?.scrollIntoView({ block: "nearest" });
+      document
+        .getElementById(optId(active))
+        ?.scrollIntoView({ block: "nearest" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, open]);
@@ -145,25 +173,50 @@ export default function Combobox({
   };
 
   const onKeyDown = (e) => {
-    if (e.key === "Tab") { if (open) closeList(); return; }
-    if (!open && (e.key === "ArrowDown" || e.key === "ArrowUp")) { e.preventDefault(); openList(); return; }
+    if (e.key === "Tab") {
+      if (open) closeList();
+      return;
+    }
+    if (!open && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+      e.preventDefault();
+      openList();
+      return;
+    }
     if (!open) return;
     const n = options.length;
-    if (e.key === "Escape") { e.preventDefault(); closeList(); return; }
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeList();
+      return;
+    }
     if (!n) return;
     keyboard.current = true;
-    if (e.key === "ArrowDown") { e.preventDefault(); setActive((a) => (a + 1) % n); }
-    else if (e.key === "ArrowUp") { e.preventDefault(); setActive((a) => (a - 1 + n) % n); }
-    else if (e.key === "Home") { e.preventDefault(); setActive(0); }
-    else if (e.key === "End") { e.preventDefault(); setActive(n - 1); }
-    else if (e.key === "Enter") { e.preventDefault(); if (active >= 0) choose(options[active]); }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActive((a) => (a + 1) % n);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActive((a) => (a - 1 + n) % n);
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setActive(0);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      setActive(n - 1);
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (active >= 0) choose(options[active]);
+    }
   };
 
   const onToggle = (e) => {
     e.preventDefault();
     input.current?.focus();
-    if (filtering) { setQuery(""); setActive(0); if (!open) openList(); }
-    else if (open) closeList();
+    if (filtering) {
+      setQuery("");
+      setActive(0);
+      if (!open) openList();
+    } else if (open) closeList();
     else openList();
   };
 
@@ -171,55 +224,110 @@ export default function Combobox({
 
   return (
     <div className="cbx-field">
-      {label && <label className="cbx__label" htmlFor={baseId}>{label}</label>}
+      {label && (
+        <label className="cbx__label" htmlFor={baseId}>
+          {label}
+        </label>
+      )}
       <div className="cbx" ref={box}>
-        <div className={`cbx__panel ${open ? "is-open" : ""} ${placement === "top" ? "is-top" : ""}`}>
+        <div
+          className={`cbx__panel ${open ? "is-open" : ""} ${placement === "top" ? "is-top" : ""}`}
+        >
           <div className="cbx__bar">
-            {selected?.icon && !filtering && <span className="cbx__lead">{selected.icon}</span>}
+            {selected?.icon && !filtering && (
+              <span className="cbx__lead">{selected.icon}</span>
+            )}
             <input
-              ref={input} id={baseId} role="combobox" aria-expanded={open} aria-autocomplete="list"
-              aria-controls={listId} aria-activedescendant={active >= 0 ? optId(active) : undefined}
-              autoComplete="off" spellCheck="false" value={query} placeholder={placeholder}
+              ref={input}
+              id={baseId}
+              role="combobox"
+              aria-expanded={open}
+              aria-autocomplete="list"
+              aria-controls={listId}
+              aria-activedescendant={active >= 0 ? optId(active) : undefined}
+              autoComplete="off"
+              spellCheck="false"
+              value={query}
+              placeholder={placeholder}
               onChange={(e) => {
                 setQuery(e.target.value);
                 if (!open) openList();
                 setActive(e.target.value ? 0 : -1);
                 keyboard.current = true;
               }}
-              onFocus={(e) => { openList(); e.target.select(); }}
+              onFocus={(e) => {
+                openList();
+                e.target.select();
+              }}
               onClick={() => !open && openList()}
               onKeyDown={onKeyDown}
             />
-            <button type="button" tabIndex={-1} className="cbx__toggle" aria-label="Abrir lista"
-              onMouseDown={(e) => e.preventDefault()} onPointerDown={ripple} onClick={onToggle}>
+            <button
+              type="button"
+              tabIndex={-1}
+              className="cbx__toggle"
+              aria-label="Abrir lista"
+              onMouseDown={(e) => e.preventDefault()}
+              onPointerDown={ripple}
+              onClick={onToggle}
+            >
               <MorphIcon state={iconState} />
             </button>
           </div>
 
-          <div className={`cbx__drop ${open ? "is-open" : ""}`} onMouseDown={(e) => e.preventDefault()}>
+          <div
+            className={`cbx__drop ${open ? "is-open" : ""}`}
+            onMouseDown={(e) => e.preventDefault()}
+          >
             <div className="cbx__dropInner">
               {rendered && (
                 <div className="cbx__scroll" style={{ maxHeight: maxH }}>
-                  <ul ref={list} id={listId} role="listbox" className="cbx__list" aria-label={label}>
-                    {shownRows.length === 0 && <li className="cbx__empty" role="presentation">{emptyMessage}</li>}
+                  <ul
+                    ref={list}
+                    id={listId}
+                    role="listbox"
+                    className="cbx__list"
+                    aria-label={label}
+                  >
+                    {shownRows.length === 0 && (
+                      <li className="cbx__empty" role="presentation">
+                        {emptyMessage}
+                      </li>
+                    )}
                     {shownRows.map((row, k) =>
                       row.type === "group" ? (
-                        <li key={`g-${row.label}-${k}`} role="presentation" className="cbx__group">{row.label}</li>
+                        <li
+                          key={`g-${row.label}-${k}`}
+                          role="presentation"
+                          className="cbx__group"
+                        >
+                          {row.label}
+                        </li>
                       ) : (
                         <li
-                          key={row.item.value} id={optId(row.index)} role="option"
+                          key={row.item.value}
+                          id={optId(row.index)}
+                          role="option"
                           aria-selected={row.item.value === value}
                           data-active={active === row.index}
-                          className="cbx__item" style={{ "--i": Math.min(row.index, 8) }}
+                          className="cbx__item"
+                          style={{ "--i": Math.min(row.index, 8) }}
                           onPointerDown={ripple}
                           onMouseMove={(e) => {
                             if (e.movementX === 0 && e.movementY === 0) return;
                             keyboard.current = false;
                             if (active !== row.index) setActive(row.index);
                           }}
-                          onClick={() => setTimeout(() => choose(row.item), REDUCED() ? 0 : 120)}
+                          onClick={() =>
+                            setTimeout(
+                              () => choose(row.item),
+                              REDUCED() ? 0 : 120,
+                            )
+                          }
                         >
-                          {row.item.icon && <span className="cbx__icon">{row.item.icon}</span>}
+                          {row.item.icon && (
+                            <span className="cbx__icon">{row.item.icon}</span>
+                          )}
                           <span className="cbx__text">
                             <span className="cbx__name">{row.item.label}</span>
                             {(row.item.description || row.item.tag) && (
@@ -231,7 +339,7 @@ export default function Combobox({
                           </span>
                           {row.item.value === value && <Check />}
                         </li>
-                      )
+                      ),
                     )}
                   </ul>
                 </div>
