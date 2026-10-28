@@ -20,12 +20,12 @@ export default function About() {
         <p>
           O FinanceDay nasceu como exercício de portfólio: uma aplicação que
           consome uma API pública de câmbio de forma assíncrona, organiza o
-          estado em componentes reutilizáveis e usa IA para transformar números
-          em leitura de mercado.
+          estado em componentes reutilizáveis e usa IA para transformar
+          números em leitura de mercado.
         </p>
         <p>
-          O projeto foi construído em camadas — serviços, hooks, componentes de
-          interface e páginas — pensando em manutenção e em ficar fácil de
+          O projeto foi construído em camadas — serviços, hooks, componentes
+          de interface e páginas — pensando em manutenção e em ficar fácil de
           trocar peças no futuro, como outra fonte de dados de câmbio ou um
           provedor de IA real para os insights.
         </p>
@@ -42,11 +42,7 @@ export default function About() {
             Ver o dashboard
             <ArrowRight size={16} />
           </Link>
-          <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
-            className="btn btn--ghost"
-          >
+          <a href="#" onClick={(e) => e.preventDefault()} className="btn btn--ghost">
             <Github size={16} />
             Repositório
           </a>

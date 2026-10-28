@@ -14,18 +14,12 @@ export default function AssetHero({ asset, note, stats, onConvert }) {
         <AssetIcon asset={asset} size={30} />
         <div>
           <strong>{asset.name}</strong>
-          <span>
-            {asset.code}/BRL{asset.live === false ? " · ilustrativo" : ""}
-          </span>
+          <span>{asset.code}/BRL{asset.live === false ? " · ilustrativo" : ""}</span>
         </div>
       </header>
 
       <div className="asset-hero__value">
-        <CountValue
-          amount={asset.value}
-          duration={900}
-          format={(v) => formatBRL(v, smartDecimals(asset.value))}
-        />
+        <CountValue amount={asset.value} duration={900} format={(v) => formatBRL(v, smartDecimals(asset.value))} />
         <Pill pct={asset.pct} />
       </div>
       {note && <p className="asset-hero__note">{note}</p>}

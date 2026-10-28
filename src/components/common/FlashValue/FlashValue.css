@@ -1,33 +1,8 @@
-.flash {
-  position: relative;
-  display: inline-block;
-  isolation: isolate;
-}
-
+.flash { position: relative; display: inline-block; isolation: isolate; }
 .flash__glow {
-  position: absolute;
-  inset: -3px -7px;
-  border-radius: 7px;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0;
-  animation: flash-glow 1.3s var(--ease-out);
+  position: absolute; inset: -3px -7px; border-radius: 7px; z-index: -1; pointer-events: none;
+  opacity: 0; animation: flash-glow 1.3s var(--ease-out);
 }
-
-.flash__glow.is-up {
-  background: rgba(63, 182, 139, 0.3);
-}
-
-.flash__glow.is-down {
-  background: rgba(226, 96, 79, 0.3);
-}
-
-@keyframes flash-glow {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
+.flash__glow.is-up { background: rgba(63, 182, 139, 0.3); }
+.flash__glow.is-down { background: rgba(226, 96, 79, 0.3); }
+@keyframes flash-glow { from { opacity: 1; } to { opacity: 0; } }

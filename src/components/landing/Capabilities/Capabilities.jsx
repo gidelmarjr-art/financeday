@@ -1,10 +1,5 @@
 import {
-  Activity,
-  LineChart,
-  Sparkles,
-  Coins,
-  BellRing,
-  Plug,
+  Activity, LineChart, Sparkles, Coins, BellRing, Plug,
 } from "lucide-react";
 import Reveal from "../../common/Reveal";
 import { CAPABILITIES } from "../../../data/mock";
@@ -25,12 +20,7 @@ export default function Capabilities() {
           {CAPABILITIES.map((item, i) => {
             const Icon = ICONS[item.icon];
             return (
-              <Reveal
-                as="div"
-                key={item.title}
-                delay={i * 60}
-                className="capabilities__row"
-              >
+              <Reveal as="div" key={item.title} delay={i * 60} className="capabilities__row">
                 <div className="capabilities__icon">
                   <Icon size={18} />
                 </div>

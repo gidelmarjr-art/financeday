@@ -28,9 +28,7 @@ export default function Footer() {
       </div>
 
       <div className="container footer__bottom">
-        <span>
-          © 2026 FinanceDay — projeto de portfólio, dados ilustrativos.
-        </span>
+        <span>© 2026 FinanceDay — projeto de portfólio, dados ilustrativos.</span>
       </div>
     </footer>
   );

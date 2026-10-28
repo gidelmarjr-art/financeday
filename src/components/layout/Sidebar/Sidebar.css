@@ -1,151 +1,58 @@
 /* Pílula flutuante, só ícones */
 .sidebar {
-  position: fixed;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 40;
-  width: 64px;
-  padding: 14px 8px;
-  border-radius: 32px;
-  background: var(--color-panel);
-  border: 1px solid var(--color-line);
-  box-shadow: var(--shadow-card);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
+  position: fixed; left: 16px; top: 50%; transform: translateY(-50%); z-index: 40;
+  width: 64px; padding: 14px 8px; border-radius: 32px;
+  background: var(--color-panel); border: 1px solid var(--color-line); box-shadow: var(--shadow-card);
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
 }
 
 .sidebar__logo {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--color-gold);
+  position: relative; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--color-gold);
   border: 1px solid var(--color-gold-dim);
 }
 
 .sidebar__nav {
-  --item: 48px;
-  --vao: 8px;
-  --passo: calc(var(--item) + var(--vao));
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--vao);
+  --item: 48px; --vao: 8px; --passo: calc(var(--item) + var(--vao));
+  position: relative; display: flex; flex-direction: column; gap: var(--vao);
 }
 
 /* Um único círculo que desliza (só transform) entre os itens */
 .sidebar__indicator {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: var(--item);
-  height: var(--item);
-  border-radius: 50%;
-  background: var(--color-gold);
-  box-shadow: 0 6px 18px rgba(212, 169, 79, 0.35);
+  position: absolute; top: 0; left: 0; width: var(--item); height: var(--item); border-radius: 50%;
+  background: var(--color-gold); box-shadow: 0 6px 18px rgba(212, 169, 79, 0.35);
   transform: translateY(calc(var(--i) * var(--passo)));
   transition: transform 600ms var(--ease-spring), opacity 200ms;
 }
 
-.sidebar__item,
-.sidebar__back {
-  position: relative;
-  z-index: 1;
-  width: var(--item, 48px);
-  height: var(--item, 48px);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: var(--color-text-dim);
+.sidebar__item, .sidebar__back {
+  position: relative; z-index: 1; width: var(--item, 48px); height: var(--item, 48px); border-radius: 50%;
+  display: grid; place-items: center; color: var(--color-text-dim);
   transition: color 200ms var(--ease-out), transform 250ms var(--ease-spring);
 }
-
-.sidebar__back {
-  width: 40px;
-  height: 40px;
-  color: var(--color-gold-dim);
-}
-
-.sidebar__item:hover,
-.sidebar__back:hover {
-  color: var(--color-text);
-}
-
-.sidebar__item.is-active {
-  color: #0a0f1c;
-}
-
-.sidebar__item:active,
-.sidebar__back:active {
-  transform: scale(0.92);
-}
-
-.sidebar a:focus-visible {
-  outline: 2px solid var(--color-gold);
-  outline-offset: 2px;
-}
+.sidebar__back { width: 40px; height: 40px; color: var(--color-gold-dim); }
+.sidebar__item:hover, .sidebar__back:hover { color: var(--color-text); }
+.sidebar__item.is-active { color: #0a0f1c; }
+.sidebar__item:active, .sidebar__back:active { transform: scale(0.92); }
+.sidebar a:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 2px; }
 
 /* Nome do item em pílula (hover e foco do teclado) */
 .sidebar__tip {
-  position: absolute;
-  left: calc(100% + 14px);
-  top: 50%;
-  transform: translate(-6px, -50%);
-  background: var(--color-panel-alt);
-  border: 1px solid var(--color-line);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 12.5px;
-  font-weight: 500;
-  letter-spacing: 0;
-  white-space: nowrap;
-  padding: 6px 12px;
-  border-radius: 20px;
-  box-shadow: var(--shadow-card);
-  pointer-events: none;
-  opacity: 0;
+  position: absolute; left: calc(100% + 14px); top: 50%; transform: translate(-6px, -50%);
+  background: var(--color-panel-alt); border: 1px solid var(--color-line); color: var(--color-text);
+  font-family: var(--font-body); font-size: 12.5px; font-weight: 500; letter-spacing: 0; white-space: nowrap;
+  padding: 6px 12px; border-radius: 20px; box-shadow: var(--shadow-card); pointer-events: none; opacity: 0;
   transition: opacity 180ms var(--ease-out), transform 300ms var(--ease-spring);
 }
-
-.sidebar a:hover>.sidebar__tip,
-.sidebar a:focus-visible>.sidebar__tip {
-  opacity: 1;
-  transform: translate(0, -50%);
-}
+.sidebar a:hover > .sidebar__tip, .sidebar a:focus-visible > .sidebar__tip { opacity: 1; transform: translate(0, -50%); }
 
 /* Celular: barra inferior; o círculo desliza no eixo X */
 @media (max-width: 900px) {
   .sidebar {
-    left: 50%;
-    top: auto;
-    bottom: 14px;
-    transform: translateX(-50%);
-    width: auto;
-    flex-direction: row;
-    padding: 8px 12px;
-    border-radius: 34px;
-    gap: 6px;
+    left: 50%; top: auto; bottom: 14px; transform: translateX(-50%); width: auto;
+    flex-direction: row; padding: 8px 12px; border-radius: 34px; gap: 6px;
   }
-
-  .sidebar__logo,
-  .sidebar__back,
-  .sidebar__tip {
-    display: none;
-  }
-
-  .sidebar__nav {
-    flex-direction: row;
-  }
-
-  .sidebar__indicator {
-    transform: translateX(calc(var(--i) * var(--passo)));
-  }
+  .sidebar__logo, .sidebar__back, .sidebar__tip { display: none; }
+  .sidebar__nav { flex-direction: row; }
+  .sidebar__indicator { transform: translateX(calc(var(--i) * var(--passo))); }
 }

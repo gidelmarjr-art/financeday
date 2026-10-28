@@ -42,11 +42,7 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
-          <NavLink
-            to="/dashboard"
-            className="navbar__cta"
-            onClick={() => setOpen(false)}
-          >
+          <NavLink to="/dashboard" className="navbar__cta" onClick={() => setOpen(false)}>
             Abrir dashboard
           </NavLink>
         </nav>

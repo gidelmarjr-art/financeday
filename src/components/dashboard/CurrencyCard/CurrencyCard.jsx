@@ -1,5 +1,5 @@
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
-import Flag from "../common/Flag";
+import Flag from "../../common/Flag";
 import "./CurrencyCard.css";
 
 export default function CurrencyCard({ currency, selected, onSelect }) {

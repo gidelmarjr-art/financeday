@@ -13,24 +13,10 @@ function Row({ label, up, total, delay }) {
     <div className="breadth__row">
       <div className="breadth__line">
         <span>{label}</span>
-        <span className="breadth__count">
-          {up} de {total} em alta
-        </span>
+        <span className="breadth__count">{up} de {total} em alta</span>
       </div>
-      <div
-        className="breadth__track"
-        role="progressbar"
-        aria-valuenow={Math.round(pct)}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label={`${label} em alta`}
-      >
-        <i
-          style={{
-            transform: `scaleX(${ready ? pct / 100 : 0})`,
-            transitionDelay: `${delay}ms`,
-          }}
-        />
+      <div className="breadth__track" role="progressbar" aria-valuenow={Math.round(pct)} aria-valuemin={0} aria-valuemax={100} aria-label={`${label} em alta`}>
+        <i style={{ transform: `scaleX(${ready ? pct / 100 : 0})`, transitionDelay: `${delay}ms` }} />
       </div>
     </div>
   );

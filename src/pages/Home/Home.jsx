@@ -1,12 +1,12 @@
 import { useExchangeRates } from "../../hooks/useExchangeRates";
 import { LIVE_SYMBOLS, withLiveData } from "../../utils/liveData";
 import { FEATURED, CURRENCIES } from "../../data/mock";
-import Hero from "../../components/landing/Hero/Hero"; // Ajuste conforme a estrutura do Hero
-import TickerMarquee from "../../components/landing/TickerMarquee/TickerMarquee";
-import Capabilities from "../../components/landing/Capabilities/Capabilities";
-import ProductShowcase from "../../components/landing/ProductShowcase/ProductShowcase";
-import StatsSection from "../../components/landing/StatsSection/StatsSection";
-import CtaBanner from "../../components/landing/CtaBanner/CtaBanner";
+import Hero from "../../components/landing/Hero";
+import TickerMarquee from "../../components/landing/TickerMarquee";
+import Capabilities from "../../components/landing/Capabilities";
+import ProductShowcase from "../../components/landing/ProductShowcase";
+import StatsSection from "../../components/landing/StatsSection";
+import CtaBanner from "../../components/landing/CtaBanner";
 
 export default function Home() {
   // Mesmo hook, mesma fonte de dados do Dashboard — assim a landing page e

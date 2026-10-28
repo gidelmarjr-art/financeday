@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "../../common/Reveal";
-import DashboardPreview from "../DashboardPreview/DashboardPreview";
+import DashboardPreview from "../DashboardPreview";
 import "./CtaBanner.css";
 
 export default function CtaBanner() {
