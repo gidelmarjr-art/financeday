@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Search, Clock3, Circle } from "lucide-react";
-import Sidebar from "../components/layout/Sidebar";
+import Sidebar from "../components/layout/Sidebar/Sidebar";
 import "../styles/bento.css";
 import "./DashboardLayout.css";
 
@@ -38,7 +38,9 @@ export default function DashboardLayout() {
       <div className="dashboard-layout__main">
         <header className="dashboard-topbar">
           <div className="dashboard-topbar__left">
-            <span className="dashboard-topbar__title">{TITLES[pathname] ?? "Dashboard"}</span>
+            <span className="dashboard-topbar__title">
+              {TITLES[pathname] ?? "Dashboard"}
+            </span>
           </div>
 
           <div className="dashboard-topbar__right">
