@@ -1,6 +1,6 @@
-import { useInView } from "../../hooks/useInView";
-import { useCountUp } from "../../hooks/useCountUp";
-import { STATS } from "../../data/mock";
+import { useInView } from "../../../hooks/useInView";
+import { useCountUp } from "../../../hooks/useCountUp";
+import { STATS } from "../../../data/mock";
 import "./StatsSection.css";
 
 function StatItem({ value, suffix, label }) {
