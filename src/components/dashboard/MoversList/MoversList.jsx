@@ -1,5 +1,5 @@
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
-import { formatPct, formatBRL } from "../../utils/format";
+import { formatPct, formatBRL } from "../../../utils/format";
 import { AssetIcon } from "../common/Flag";
 import "./MoversList.css";
 
@@ -16,8 +16,14 @@ export default function MoversList({ title, items, onSelect }) {
                 <strong>{a.code}</strong>
                 <em>{formatBRL(a.value)}</em>
               </span>
-              <span className={`movers__pct ${a.pct >= 0 ? "is-up" : "is-down"}`}>
-                {a.pct >= 0 ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
+              <span
+                className={`movers__pct ${a.pct >= 0 ? "is-up" : "is-down"}`}
+              >
+                {a.pct >= 0 ? (
+                  <ArrowUpRight size={12} />
+                ) : (
+                  <ArrowDownRight size={12} />
+                )}
                 {formatPct(Math.abs(a.pct), false)}
               </span>
             </button>

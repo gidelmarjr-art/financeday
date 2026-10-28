@@ -17,7 +17,9 @@ function FlapChar({ char, delay = 0 }) {
     }
 
     const steps = 5 + Math.floor(Math.random() * 4);
-    const seq = Array.from({ length: steps }, () => String(Math.floor(Math.random() * 10)));
+    const seq = Array.from({ length: steps }, () =>
+      String(Math.floor(Math.random() * 10)),
+    );
     seq.push(char);
 
     const startId = setTimeout(function run(i = 0) {
@@ -35,7 +37,11 @@ function FlapChar({ char, delay = 0 }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [char, delay]);
 
-  return <span className={`flap-char ${active ? "flap-char--active" : ""}`}>{display}</span>;
+  return (
+    <span className={`flap-char ${active ? "flap-char--active" : ""}`}>
+      {display}
+    </span>
+  );
 }
 
 function FlapTile({ code, label, value, pct, up, size = "md" }) {
