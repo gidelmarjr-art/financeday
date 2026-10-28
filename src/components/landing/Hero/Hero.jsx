@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import FlapBoard from "../dashboard/FlapBoard";
+import FlapBoard from "../../dashboard/FlapBoard/FlapBoard";
 import Reveal from "../../common/Reveal";
 import { formatAsOfDate } from "../../../utils/liveData";
 import "./Hero.css";

@@ -1,6 +1,6 @@
 import Reveal from "../../common/Reveal";
-import CurrencyCard from "../dashboard/CurrencyCard";
-import AiInsights from "../dashboard/AiInsights";
+import CurrencyCard from "../../dashboard/CurrencyCard/CurrencyCard";
+import AiInsights from "../../dashboard/AiInsights/AiInsights";
 import { INSIGHTS } from "../../../data/mock";
 import "./ProductShowcase.css";
 
