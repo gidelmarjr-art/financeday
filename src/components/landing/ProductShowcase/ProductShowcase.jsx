@@ -1,7 +1,7 @@
-import Reveal from "../common/Reveal";
+import Reveal from "../../common/Reveal";
 import CurrencyCard from "../dashboard/CurrencyCard";
 import AiInsights from "../dashboard/AiInsights";
-import { INSIGHTS } from "../../data/mock";
+import { INSIGHTS } from "../../../data/mock";
 import "./ProductShowcase.css";
 
 export default function ProductShowcase({ currencies }) {
@@ -14,8 +14,8 @@ export default function ProductShowcase({ currencies }) {
           <span className="section-eyebrow">O painel</span>
           <h2>Dados e leitura, lado a lado</h2>
           <p>
-            Cada moeda com seu valor, variação e contexto — e um painel de IA
-            ao lado, sinalizando o que realmente importa olhar hoje.
+            Cada moeda com seu valor, variação e contexto — e um painel de IA ao
+            lado, sinalizando o que realmente importa olhar hoje.
           </p>
         </Reveal>
 
@@ -30,7 +30,12 @@ export default function ProductShowcase({ currencies }) {
             <div className="showcase__body">
               <div className="showcase__cards">
                 {preview.map((c) => (
-                  <CurrencyCard key={c.code} currency={c} selected={c.code === "USD"} onSelect={() => {}} />
+                  <CurrencyCard
+                    key={c.code}
+                    currency={c}
+                    selected={c.code === "USD"}
+                    onSelect={() => {}}
+                  />
                 ))}
               </div>
               <AiInsights insights={INSIGHTS} />

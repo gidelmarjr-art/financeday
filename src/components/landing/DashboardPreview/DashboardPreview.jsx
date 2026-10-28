@@ -1,4 +1,12 @@
-import { DollarSign, Euro, Bitcoin, PoundSterling, Gauge, ArrowLeftRight, Coins } from "lucide-react";
+import {
+  DollarSign,
+  Euro,
+  Bitcoin,
+  PoundSterling,
+  Gauge,
+  ArrowLeftRight,
+  Coins,
+} from "lucide-react";
 import StatCard from "../dashboard/StatCard";
 import CompareChart from "../dashboard/CompareChart";
 import Sparkline from "../dashboard/Sparkline";
@@ -30,31 +38,49 @@ export default function DashboardPreview() {
     { a: byKey["crypto:bitcoin"], icon: Bitcoin, label: "BTC · Bitcoin" },
   ].filter((k) => k.a);
 
-  const chartAssets = ["USD", "EUR", "GBP", "CAD"].map((c) => byKey[c]).filter(Boolean);
+  const chartAssets = ["USD", "EUR", "GBP", "CAD"]
+    .map((c) => byKey[c])
+    .filter(Boolean);
   const rows = crypto.slice(0, 3);
 
   return (
     <div className="dpreview" ref={ref} aria-hidden="true">
       <div className="dpreview__frame">
         <div className="dpreview__chrome">
-          <i /><i /><i />
+          <i />
+          <i />
+          <i />
           <span>financeday · dashboard</span>
         </div>
 
         <div className="dpreview__body">
           <aside className="dpreview__side">
-            <b>Finance<span>Day</span></b>
+            <b>
+              Finance<span>Day</span>
+            </b>
             {NAV.map(({ label, icon: Icon, active }) => (
-              <span key={label} className={active ? "is-active" : ""}><Icon size={14} />{label}</span>
+              <span key={label} className={active ? "is-active" : ""}>
+                <Icon size={14} />
+                {label}
+              </span>
             ))}
           </aside>
 
           <div className="dpreview__main">
             <div className="dpreview__kpis">
               {kpis.map(({ a, icon: Icon, label }) => (
-                <StatCard key={a.key} icon={<Icon size={15} />} label={label}
-                  value={formatBRL(a.value)} pct={a.pct}
-                  caption={a.kind === "crypto" ? "Variação em 24h" : "Variação vs. referência anterior"} />
+                <StatCard
+                  key={a.key}
+                  icon={<Icon size={15} />}
+                  label={label}
+                  value={formatBRL(a.value)}
+                  pct={a.pct}
+                  caption={
+                    a.kind === "crypto"
+                      ? "Variação em 24h"
+                      : "Variação vs. referência anterior"
+                  }
+                />
               ))}
             </div>
 
@@ -69,10 +95,23 @@ export default function DashboardPreview() {
             <div className="dpreview__rows">
               {rows.map((c) => (
                 <div key={c.key} className="dpreview__row">
-                  <span>{c.image && <img src={c.image} alt="" width="20" height="20" />}<b>{c.name}</b><em>{c.code}</em></span>
+                  <span>
+                    {c.image && (
+                      <img src={c.image} alt="" width="20" height="20" />
+                    )}
+                    <b>{c.name}</b>
+                    <em>{c.code}</em>
+                  </span>
                   <span>{formatBRL(c.brl)}</span>
-                  <span className={c.pct >= 0 ? "t-up" : "t-down"}>{formatPct(c.pct)}</span>
-                  <Sparkline data={c.spark} up={(c.pct7d ?? c.pct) >= 0} width={90} height={26} />
+                  <span className={c.pct >= 0 ? "t-up" : "t-down"}>
+                    {formatPct(c.pct)}
+                  </span>
+                  <Sparkline
+                    data={c.spark}
+                    up={(c.pct7d ?? c.pct) >= 0}
+                    width={90}
+                    height={26}
+                  />
                 </div>
               ))}
             </div>
