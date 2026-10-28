@@ -1,4 +1,0 @@
-.pill { display: inline-flex; align-items: center; gap: 2px; font-family: var(--font-mono); font-size: 11.5px; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
-.pill.is-up { color: var(--color-up); background: rgba(63, 182, 139, 0.14); }
-.pill.is-down { color: var(--color-down); background: rgba(226, 96, 79, 0.14); }
-.pill--onGold { color: #1a1304 !important; background: rgba(26, 19, 4, 0.14) !important; }

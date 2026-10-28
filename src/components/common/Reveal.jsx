@@ -5,7 +5,12 @@ import { useInView } from "../../hooks/useInView";
  * styles/global.css). `delay` aceita um valor em ms para escalonar entradas
  * de itens dentro de uma mesma seção (ex.: cartões de uma grade).
  */
-export default function Reveal({ children, delay = 0, as: Tag = "div", className = "" }) {
+export default function Reveal({
+  children,
+  delay = 0,
+  as: Tag = "div",
+  className = "",
+}) {
   const [ref, isVisible] = useInView();
 
   return (
