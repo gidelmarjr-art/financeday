@@ -1,8 +1,8 @@
-import CountValue from "../common/CountValue";
-import Pill from "../common/Pill";
-import { AssetIcon } from "../common/Flag";
-import Sparkline from "../dashboard/Sparkline";
-import { formatBRL, smartDecimals } from "../../utils/format";
+import CountValue from "../../common/CountValue";
+import Pill from "../../common/Pill";
+import { AssetIcon } from "../../common/Flag";
+import Sparkline from "../../dashboard/Sparkline";
+import { formatBRL, smartDecimals } from "../../../utils/format";
 import "./MiniStat.css";
 
 export default function MiniStat({ asset, onOpen, delay = 0 }) {

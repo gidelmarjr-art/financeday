@@ -1,8 +1,8 @@
 import { ArrowLeftRight } from "lucide-react";
-import CountValue from "../common/CountValue";
-import Pill from "../common/Pill";
-import { AssetIcon } from "../common/Flag";
-import { formatBRL, formatNumber, smartDecimals } from "../../utils/format";
+import CountValue from "../../common/CountValue";
+import Pill from "../../common/Pill";
+import { AssetIcon } from "../../common/Flag";
+import { formatBRL, formatNumber, smartDecimals } from "../../../utils/format";
 import "./HeroRate.css";
 
 /** Card principal: cotação do dólar em destaque + "carteiras" com as demais moedas. */

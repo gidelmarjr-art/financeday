@@ -1,8 +1,8 @@
 import { ArrowLeftRight } from "lucide-react";
-import CountValue from "../common/CountValue";
-import Pill from "../common/Pill";
-import { AssetIcon } from "../common/Flag";
-import { formatBRL, smartDecimals } from "../../utils/format";
+import CountValue from "../../common/CountValue";
+import Pill from "../../common/Pill";
+import { AssetIcon } from "../../common/Flag";
+import { formatBRL, smartDecimals } from "../../../utils/format";
 import "./AssetHero.css";
 
 /** Card do ativo selecionado (Moedas e Criptomoedas): cotação em destaque + indicadores. */

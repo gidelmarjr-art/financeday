@@ -1,8 +1,8 @@
 import { Bitcoin } from "lucide-react";
-import CountValue from "../common/CountValue";
-import Pill from "../common/Pill";
-import Sparkline from "../dashboard/Sparkline";
-import { formatBRL, smartDecimals } from "../../utils/format";
+import CountValue from "../../common/CountValue";
+import Pill from "../../common/Pill";
+import Sparkline from "../../dashboard/Sparkline";
+import { formatBRL, smartDecimals } from "../../../utils/format";
 import "./HighlightCard.css";
 
 /** Card em destaque (gradiente dourado): o ativo principal, com tendência de 7 dias. */

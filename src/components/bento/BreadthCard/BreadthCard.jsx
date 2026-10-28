@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CountValue from "../common/CountValue";
+import CountValue from "../../common/CountValue";
 import "./BreadthCard.css";
 
 function Row({ label, up, total, delay }) {
