@@ -1,2 +1,0 @@
-.spark__line { stroke-dasharray: 1; animation: spark-draw 1s var(--ease-out) backwards; }
-@keyframes spark-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
