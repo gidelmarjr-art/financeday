@@ -1,60 +1,79 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { Menu, X, ArrowRight } from "lucide-react";
 import "./Navbar.css";
 
-const LINKS = [
-  { to: "/", label: "Início", end: true },
-  { to: "/dashboard", label: "Dashboard" },
-  { to: "/sobre", label: "Sobre" },
+const SECTIONS = [
+  { id: "produto", label: "Produto" },
+  { id: "como-funciona", label: "Como funciona" },
+  { id: "demo", label: "Demo" },
+  { id: "fontes", label: "Fontes" },
+  { id: "faq", label: "FAQ" },
 ];
 
+/** Cabeçalho em pílula flutuante; na home destaca a seção que está na tela. */
 export default function Navbar() {
+  const { pathname } = useLocation();
+  const onHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 12);
-    }
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!onHome) return setActive("");
+    const nodes = SECTIONS.map((s) => document.getElementById(s.id)).filter(Boolean);
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    nodes.forEach((n) => io.observe(n));
+    return () => io.disconnect();
+  }, [onHome]);
+
+  const href = (id) => (onHome ? `#${id}` : `/#${id}`);
+  const close = () => setOpen(false);
+
   return (
     <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
-      <div className="container navbar__inner">
-        <NavLink to="/" className="navbar__logo" onClick={() => setOpen(false)}>
+      <div className="navbar__pill">
+        <Link to="/" className="navbar__logo" onClick={close} aria-label="FinanceDay — início">
+          <span className="navbar__mark">F</span>
           Finance<span>Day</span>
-        </NavLink>
+        </Link>
 
-        <nav className={`navbar__links ${open ? "navbar__links--open" : ""}`}>
-          {LINKS.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.end}
-              className={({ isActive }) =>
-                `navbar__link ${isActive ? "navbar__link--active" : ""}`
-              }
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </NavLink>
+        <nav className="navbar__links" aria-label="Seções">
+          {SECTIONS.map((s) => (
+            <a key={s.id} href={href(s.id)} className={`navbar__link ${active === s.id ? "is-active" : ""}`}>
+              {s.label}
+            </a>
           ))}
-          <NavLink to="/dashboard" className="navbar__cta" onClick={() => setOpen(false)}>
-            Abrir dashboard
-          </NavLink>
+          <NavLink to="/sobre" className={({ isActive }) => `navbar__link ${isActive ? "is-active" : ""}`}>Sobre</NavLink>
         </nav>
 
-        <button
-          className="navbar__toggle"
-          aria-label={open ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
+        <Link to="/dashboard" className="navbar__cta">
+          Abrir dashboard <ArrowRight size={15} />
+        </Link>
+
+        <button className="navbar__toggle" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
+      </div>
+
+      <div className={`navbar__menu ${open ? "is-open" : ""}`}>
+        <div>
+          {SECTIONS.map((s) => (
+            <a key={s.id} href={href(s.id)} onClick={close}>{s.label}</a>
+          ))}
+          <NavLink to="/sobre" onClick={close}>Sobre</NavLink>
+          <Link to="/dashboard" className="navbar__menuCta" onClick={close}>Abrir dashboard <ArrowRight size={15} /></Link>
+        </div>
       </div>
     </header>
   );

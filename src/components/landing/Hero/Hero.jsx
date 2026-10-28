@@ -1,38 +1,55 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowDown, Check } from "lucide-react";
 import FlapBoard from "../../dashboard/FlapBoard";
-import Reveal from "../../common/Reveal";
+import { useMarket } from "../../../context/MarketContext";
 import { formatAsOfDate } from "../../../utils/liveData";
 import "./Hero.css";
 
 export default function Hero({ featured, asOf }) {
-  return (
-    <section className="hero">
-      <div className="container hero__grid">
-        <Reveal as="div" className="hero__copy">
-          <span className="hero__eyebrow">Câmbio + Inteligência Artificial</span>
-          <h1>
-            O câmbio muda a cada instante.
-            <br />
-            Seu painel também deveria.
-          </h1>
-          <p>
-            O FinanceDay acompanha as principais moedas frente ao real e
-            resume, em linguagem simples, o que mudou e por quê — como um
-            analista que nunca sai da tela.
-          </p>
-          <div className="hero__actions">
-            <Link to="/dashboard" className="btn btn--primary">
-              Abrir dashboard
-              <ArrowRight size={16} />
-            </Link>
-            <a href="#capacidades" className="btn btn--ghost">
-              Ver capacidades
-            </a>
-          </div>
-        </Reveal>
+  const { fiat, crypto, fiatStatus, cryptoStatus } = useMarket();
+  const live = fiatStatus === "success" || cryptoStatus === "success";
+  const seq = (n) => ({ "--s": n });
 
-        <Reveal as="div" delay={150} className="hero__visual">
+  return (
+    <section className="hero" id="inicio">
+      <div className="hero__bg" aria-hidden="true"><span /><span /></div>
+
+      <div className="container hero__inner">
+        <a href="#fontes" className={`hero__badge hero__seq lp-live ${live ? "is-live" : ""}`} style={seq(0)}>
+          <i />
+          {live ? "Dados ao vivo" : "Dados ilustrativos"} · BCE + CoinGecko
+          <ArrowRight size={13} />
+        </a>
+
+        <h1 className="hero__seq" style={seq(1)}>
+          Câmbio e cripto
+          <br />
+          <em>em tempo real</em>,
+          <br />
+          num só painel.
+        </h1>
+
+        <p className="hero__lead hero__seq" style={seq(2)}>
+          Acompanhe {fiat.length} moedas e o top {crypto.length} de criptomoedas frente ao real, com histórico,
+          conversor entre qualquer par e leitura automática das maiores altas e quedas.
+        </p>
+
+        <div className="hero__actions hero__seq" style={seq(3)}>
+          <Link to="/dashboard" className="btn btn--primary">
+            Abrir dashboard <ArrowRight size={16} />
+          </Link>
+          <a href="#produto" className="btn btn--ghost">
+            Ver o produto <ArrowDown size={16} />
+          </a>
+        </div>
+
+        <ul className="hero__trust hero__seq" style={seq(4)}>
+          <li><Check size={14} /> Sem cadastro</li>
+          <li><Check size={14} /> Gratuito</li>
+          <li><Check size={14} /> Fontes abertas</li>
+        </ul>
+
+        <div className="hero__stage hero__seq" style={seq(5)}>
           <div className="hero__panel">
             <div className="hero__panel-status">
               <span className="hero__dot" />
@@ -40,7 +57,7 @@ export default function Hero({ featured, asOf }) {
             </div>
             <FlapBoard items={featured} />
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

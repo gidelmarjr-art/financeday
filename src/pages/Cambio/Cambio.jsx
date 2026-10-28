@@ -5,24 +5,15 @@ import AssetCombobox from "../../components/dashboard/AssetCombobox";
 import StatCard from "../../components/dashboard/StatCard";
 import PriceChart from "../../components/dashboard/PriceChart";
 import { useMarket } from "../../context/MarketContext";
-import { useSeriesMany } from "../../hooks/useSeries";
+import { usePairSeries } from "../../hooks/usePairSeries";
 import { useCountUp } from "../../hooks/useCountUp";
 import FlashValue from "../../components/common/FlashValue";
-import { toDailyGrid } from "../../services/historyService";
-import { formatNumber, smartDecimals } from "../../utils/format";
+import { formatNumber, smartDecimals, parseAmount } from "../../utils/format";
 import "./Cambio.css";
 
 const QUICK = [
   ["BRL", "USD"], ["USD", "BRL"], ["EUR", "BRL"], ["GBP", "BRL"], ["BRL", "crypto:bitcoin"], ["crypto:bitcoin", "BRL"],
 ];
-
-// "1.234,56" / "1234.56" / "5" -> número
-function parseAmount(str) {
-  const s = String(str).trim();
-  if (!s) return NaN;
-  const normalized = s.includes(",") ? s.replace(/\./g, "").replace(",", ".") : s;
-  return Number(normalized);
-}
 
 export default function Cambio() {
   const { fiat, crypto, brl, byKey } = useMarket();
@@ -50,17 +41,8 @@ export default function Cambio() {
   const shown = useCountUp(result ?? 0, { duration: 900, animateKey: pairKey });
   const resultDec = result != null ? smartDecimals(result) : 2;
 
-  const pair = useSeriesMany(a && b && a.key !== b.key ? [a, b] : [], days);
-  const pairData = useMemo(() => {
-    if (pair.loading || !a || !b || a.key === b.key) return { points: [], estimated: false };
-    const ra = pair.data[a.key];
-    const rb = pair.data[b.key];
-    if (!ra || !rb) return { points: [], estimated: false };
-    const ga = toDailyGrid(ra.points, days);
-    const gb = toDailyGrid(rb.points, days);
-    return { points: ga.map((p, i) => ({ ts: p.ts, v: p.v / gb[i].v })), estimated: ra.estimated || rb.estimated };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pair.loading, pair.data, a?.key, b?.key, days]);
+  const pair = usePairSeries(a, b, days);
+  const pairData = pair;
 
   const dec = rate != null ? smartDecimals(rate) : 4;
 

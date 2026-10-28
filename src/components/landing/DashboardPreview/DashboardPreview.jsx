@@ -34,7 +34,7 @@ export default function DashboardPreview() {
   const rows = crypto.slice(0, 3);
 
   return (
-    <div className="dpreview" ref={ref} aria-hidden="true">
+    <div className="dpreview" ref={ref} aria-hidden="true" inert="">
       <div className="dpreview__frame">
         <div className="dpreview__chrome">
           <i /><i /><i />

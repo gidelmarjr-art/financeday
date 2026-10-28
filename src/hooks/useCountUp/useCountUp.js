@@ -9,9 +9,11 @@ const reducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce
  * de moedas); mudanças do próprio valor (digitar, atualização de cotação)
  * entram na hora — movimento nunca atrasa o uso.
  */
-export function useCountUp(target, { duration = 1100, animateKey } = {}) {
+export function useCountUp(target, { duration = 1100, animateKey, from } = {}) {
   const reduced = reducedMotion();
-  const [value, setValue] = useState(reduced || intro.played || !Number.isFinite(target) ? target : 0);
+  const [value, setValue] = useState(
+    reduced || !Number.isFinite(target) ? target : from !== undefined ? from : intro.played ? target : 0
+  );
   const current = useRef(value);
   const lastKey = useRef(animateKey);
   const first = useRef(true);
@@ -25,12 +27,12 @@ export function useCountUp(target, { duration = 1100, animateKey } = {}) {
       setValue(target);
       return;
     }
-    const from = current.current;
+    const start0 = current.current;
     const start = performance.now();
     let raf;
     const step = (t) => {
       const p = Math.min((t - start) / duration, 1);
-      current.current = from + (target - from) * (1 - (1 - p) ** 4);
+      current.current = start0 + (target - start0) * (1 - (1 - p) ** 4);
       setValue(current.current);
       if (p < 1) raf = requestAnimationFrame(step);
     };

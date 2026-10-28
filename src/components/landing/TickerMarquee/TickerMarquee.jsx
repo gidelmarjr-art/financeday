@@ -1,27 +1,39 @@
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { useMarket } from "../../../context/MarketContext";
+import { AssetIcon } from "../../common/Flag";
+import { formatBRL, smartDecimals } from "../../../utils/format";
 import "./TickerMarquee.css";
 
-function TickerItem({ code, value, pct, up }) {
+function Item({ a, hidden }) {
+  const up = (a.pct ?? 0) >= 0;
   return (
-    <span className="ticker__item">
-      <strong>{code}/BRL</strong>
-      {value}
-      <span className={up ? "is-up" : "is-down"}>
-        {up ? <ArrowUpRight size={13} /> : <ArrowDownRight size={13} />}
-        {Math.abs(pct).toFixed(2)}%
-      </span>
+    <span className="ticker__item" aria-hidden={hidden || undefined}>
+      <AssetIcon asset={a} size={18} />
+      <strong>{a.code}</strong>
+      <span className="ticker__value">{formatBRL(a.value, smartDecimals(a.value))}</span>
+      {a.pct != null && (
+        <span className={up ? "is-up" : "is-down"}>
+          {up ? <ArrowUpRight size={13} /> : <ArrowDownRight size={13} />}
+          {Math.abs(a.pct).toFixed(2)}%
+        </span>
+      )}
     </span>
   );
 }
 
-export default function TickerMarquee({ currencies }) {
+/** Faixa contínua de cotações reais (pausa ao passar o mouse). */
+export default function TickerMarquee() {
+  const { fiat, crypto } = useMarket();
+  const items = [...fiat.slice(0, 12), ...crypto.slice(0, 8)];
   return (
-    <div className="ticker">
+    <section className="ticker" aria-label="Cotações em reais">
       <div className="ticker__track">
-        {[...currencies, ...currencies].map((c, i) => (
-          <TickerItem key={`${c.code}-${i}`} {...c} />
+        {[0, 1].map((n) => (
+          <div className="ticker__group" key={n}>
+            {items.map((a) => <Item key={`${n}-${a.key}`} a={a} hidden={n === 1} />)}
+          </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

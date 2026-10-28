@@ -39,3 +39,11 @@ export function formatPct(p, withSign = true) {
 export function formatShortDate(ts) {
   return new Date(ts).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
 }
+
+/** "1.234,56" / "1234.56" / "5" -> número (NaN se vazio/inválido). */
+export function parseAmount(str) {
+  const s = String(str).trim();
+  if (!s) return NaN;
+  const normalized = s.includes(",") ? s.replace(/\./g, "").replace(",", ".") : s;
+  return Number(normalized);
+}

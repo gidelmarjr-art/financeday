@@ -1,57 +1,12 @@
-.ticker {
-  border-top: 1px solid var(--color-line);
-  border-bottom: 1px solid var(--color-line);
-  background: var(--color-panel);
-  overflow: hidden;
-  padding: 16px 0;
-}
-
-.ticker__track {
-  display: flex;
-  width: max-content;
-  gap: 40px;
-  animation: ticker-scroll 38s linear infinite;
-}
-
-.ticker:hover .ticker__track {
-  animation-play-state: paused;
-}
-
-.ticker__item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--color-text-dim);
-  white-space: nowrap;
-}
-
-.ticker__item strong {
-  color: var(--color-text);
-  font-weight: 600;
-}
-
-.ticker__item .is-up,
-.ticker__item .is-down {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.ticker__item .is-up {
-  color: var(--color-up);
-}
-
-.ticker__item .is-down {
-  color: var(--color-down);
-}
-
-@keyframes ticker-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
+.ticker { position: relative; overflow: hidden; border-block: 1px solid var(--color-line); background: rgba(16, 24, 40, 0.4); padding: 16px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.ticker__track { display: flex; width: max-content; animation: ticker-run 70s linear infinite; }
+.ticker:hover .ticker__track { animation-play-state: paused; }
+.ticker__group { display: flex; flex-shrink: 0; }
+.ticker__item { display: inline-flex; align-items: center; gap: 9px; padding: 0 26px; font-family: var(--font-mono); font-size: 13px; white-space: nowrap; border-right: 1px solid var(--color-line); }
+.ticker__item strong { font-weight: 500; letter-spacing: 0.04em; }
+.ticker__value { color: var(--color-text-dim); }
+.ticker__item .is-up, .ticker__item .is-down { display: inline-flex; align-items: center; gap: 1px; }
+.ticker__item .is-up { color: var(--color-up); }
+.ticker__item .is-down { color: var(--color-down); }
+@keyframes ticker-run { to { transform: translateX(-50%); } }

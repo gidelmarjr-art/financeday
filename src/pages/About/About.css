@@ -1,5 +1,5 @@
 .about {
-  padding: var(--section-padding) 0;
+  padding: calc(var(--section-padding) + 56px) 0 var(--section-padding); /* 56px = navbar flutuante */
   min-height: 60vh;
 }
 
