@@ -27,19 +27,21 @@ export const EXTRA_CODES = ["KWD", "ARS"];
 export const APPROX_ANCHOR = { KWD: "USD" };
 
 /** Valor ilustrativo (fallback offline), em BRL por 1 unidade. */
-export const FIAT_CATALOG = CURRENCIES.filter((c) => c.code !== "BTC").map((c) => {
-  const unit = c.code === "JPY" ? 100 : 1;
-  return {
-    key: c.code,
-    kind: "fiat",
-    code: c.code,
-    name: c.name.replace(" (¥100)", ""),
-    flag: c.flag,
-    unit,
-    fallbackBrl: parseBR(c.value) / unit,
-    fallbackPct: c.pct,
-  };
-});
+export const FIAT_CATALOG = CURRENCIES.filter((c) => c.code !== "BTC").map(
+  (c) => {
+    const unit = c.code === "JPY" ? 100 : 1;
+    return {
+      key: c.code,
+      kind: "fiat",
+      code: c.code,
+      name: c.name.replace(" (¥100)", ""),
+      flag: c.flag,
+      unit,
+      fallbackBrl: parseBR(c.value) / unit,
+      fallbackPct: c.pct,
+    };
+  },
+);
 
 export const BRL_ASSET = {
   key: "BRL",
@@ -102,7 +104,28 @@ export const OVERVIEW_CRYPTO = ["bitcoin", "ethereum", "solana"];
 // País de cada moeda (ISO 3166-1 alpha-2) — usado para exibir bandeiras em imagem,
 // já que emojis de bandeira não aparecem no Windows (viram "BR", "US"…).
 export const FLAG_CC = {
-  USD: "us", EUR: "eu", GBP: "gb", BRL: "br", CAD: "ca", KWD: "kw", BHD: "bh", OMR: "om",
-  JOD: "jo", GIP: "gi", KYD: "ky", CHF: "ch", SGD: "sg", JPY: "jp", AUD: "au", NZD: "nz",
-  AED: "ae", SAR: "sa", ILS: "il", CNY: "cn", NOK: "no", MXN: "mx", TRY: "tr", ARS: "ar",
+  USD: "us",
+  EUR: "eu",
+  GBP: "gb",
+  BRL: "br",
+  CAD: "ca",
+  KWD: "kw",
+  BHD: "bh",
+  OMR: "om",
+  JOD: "jo",
+  GIP: "gi",
+  KYD: "ky",
+  CHF: "ch",
+  SGD: "sg",
+  JPY: "jp",
+  AUD: "au",
+  NZD: "nz",
+  AED: "ae",
+  SAR: "sa",
+  ILS: "il",
+  CNY: "cn",
+  NOK: "no",
+  MXN: "mx",
+  TRY: "tr",
+  ARS: "ar",
 };

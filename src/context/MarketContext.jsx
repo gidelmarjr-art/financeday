@@ -1,9 +1,17 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { fetchRatesWithChange, fetchExtraRates } from "../services/exchangeService";
+import {
+  fetchRatesWithChange,
+  fetchExtraRates,
+} from "../services/exchangeService";
 import { fetchTopCrypto } from "../services/cryptoService";
 import { LIVE_SYMBOLS } from "../utils/liveData";
 import {
-  FIAT_CATALOG, PEGS, EXTRA_CODES, APPROX_ANCHOR, BRL_ASSET, CRYPTO_FALLBACK,
+  FIAT_CATALOG,
+  PEGS,
+  EXTRA_CODES,
+  APPROX_ANCHOR,
+  BRL_ASSET,
+  CRYPTO_FALLBACK,
 } from "../data/catalog";
 
 const POLL_MS = 60_000;
@@ -38,7 +46,16 @@ function buildFiat(ecb, extra) {
         anchorRatio = brl / live("USD").value;
       }
     }
-    return { ...c, brl, value: brl * c.unit, pct, up: (pct ?? 0) >= 0, live: isLive, anchor, anchorRatio };
+    return {
+      ...c,
+      brl,
+      value: brl * c.unit,
+      pct,
+      up: (pct ?? 0) >= 0,
+      live: isLive,
+      anchor,
+      anchorRatio,
+    };
   });
   return out;
 }
@@ -60,16 +77,23 @@ export function MarketProvider({ children }) {
         fetchTopCrypto(),
       ]);
       if (cancelled) return;
-      if (e.status === "fulfilled") { setEcb(e.value); setFiatStatus("success"); }
-      else setFiatStatus((s) => (s === "success" ? s : "error"));
+      if (e.status === "fulfilled") {
+        setEcb(e.value);
+        setFiatStatus("success");
+      } else setFiatStatus((s) => (s === "success" ? s : "error"));
       if (x.status === "fulfilled") setExtra(x.value);
-      if (c.status === "fulfilled") { setCrypto(c.value); setCryptoStatus("success"); }
-      else setCryptoStatus((s) => (s === "success" ? s : "error"));
+      if (c.status === "fulfilled") {
+        setCrypto(c.value);
+        setCryptoStatus("success");
+      } else setCryptoStatus((s) => (s === "success" ? s : "error"));
       setUpdatedAt(new Date());
     }
     load();
     const id = setInterval(load, POLL_MS);
-    return () => { cancelled = true; clearInterval(id); };
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
   }, []);
 
   const value = useMemo(() => {
@@ -77,21 +101,35 @@ export function MarketProvider({ children }) {
     const usd = fiat.find((f) => f.code === "USD");
     // Real exibido em dólar: 1 BRL = X USD, com variação invertida.
     const brlPct = usd ? (1 / (1 + (usd.pct ?? 0) / 100) - 1) * 100 : 0;
-    const brl = { ...BRL_ASSET, pct: brlPct, up: brlPct >= 0, usdValue: usd ? 1 / usd.brl : null };
+    const brl = {
+      ...BRL_ASSET,
+      pct: brlPct,
+      up: brlPct >= 0,
+      usdValue: usd ? 1 / usd.brl : null,
+    };
     const assets = [brl, ...fiat, ...crypto];
     const byKey = Object.fromEntries(assets.map((a) => [a.key, a]));
     return {
-      fiat, crypto, brl, assets, byKey,
+      fiat,
+      crypto,
+      brl,
+      assets,
+      byKey,
       asOf: ecb?.asOf ?? null,
-      fiatStatus, cryptoStatus, updatedAt,
+      fiatStatus,
+      cryptoStatus,
+      updatedAt,
     };
   }, [ecb, extra, crypto, fiatStatus, cryptoStatus, updatedAt]);
 
-  return <MarketContext.Provider value={value}>{children}</MarketContext.Provider>;
+  return (
+    <MarketContext.Provider value={value}>{children}</MarketContext.Provider>
+  );
 }
 
 export function useMarket() {
   const ctx = useContext(MarketContext);
-  if (!ctx) throw new Error("useMarket precisa estar dentro de <MarketProvider>");
+  if (!ctx)
+    throw new Error("useMarket precisa estar dentro de <MarketProvider>");
   return ctx;
 }
