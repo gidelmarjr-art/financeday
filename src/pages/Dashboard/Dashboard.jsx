@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HeroRate from "../components/bento/HeroRate";
-import HighlightCard from "../components/bento/HighlightCard";
-import MiniStat from "../components/bento/MiniStat";
-import ChangeBars from "../components/bento/ChangeBars";
-import BreadthCard from "../components/bento/BreadthCard";
-import CompareChart from "../components/dashboard/CompareChart";
-import RangeTabs, { RANGES } from "../../components/dashboard/RangeTabs";
-import MoversList from "../components/dashboard/MoversList";
-import AiInsights from "../components/dashboard/AiInsights";
+import HeroRate from "../components/bento/HeroRate/HeroRate";
+import HighlightCard from "../components/bento/HighlightCard/HighlightCard";
+import MiniStat from "../components/bento/MiniStat/MiniStat";
+import ChangeBars from "../components/bento/ChangeBars/ChangeBars";
+import BreadthCard from "../components/bento/BreadthCard/BreadthCard";
+import CompareChart from "../components/dashboard/CompareChart/CompareChart";
+import RangeTabs, {
+  RANGES,
+} from "../../components/dashboard/RangeTabs/RangeTabs";
+import MoversList from "../components/dashboard/MoversList/MoversList";
+import AiInsights from "../components/dashboard/AiInsights/AiInsights";
 import { useMarket } from "../../context/MarketContext";
 import { OVERVIEW_FIAT, OVERVIEW_CRYPTO } from "../../data/catalog";
 import { intro } from "../../utils/intro";
