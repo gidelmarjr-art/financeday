@@ -1,11 +1,73 @@
-.ds__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.ds__card { padding: 24px; display: flex; flex-direction: column; gap: 14px; transition: border-color 250ms var(--ease-out), transform 300ms var(--ease-spring); }
-.ds__card:hover { border-color: var(--color-gold-dim); }
-.ds__card header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.ds__card h3 { font-family: var(--font-display); font-size: 20px; margin: 0; letter-spacing: -0.01em; }
-.ds__card p { margin: 0; color: var(--color-text-dim); font-size: 14.5px; line-height: 1.6; flex: 1; }
-.ds__note { display: flex; gap: 16px; align-items: flex-start; margin-top: 16px; padding: 22px 24px; border-radius: 22px; border: 1px dashed var(--color-gold-dim); background: rgba(212, 169, 79, 0.05); }
-.ds__note svg { flex-shrink: 0; color: var(--color-gold); margin-top: 2px; }
-.ds__note p { margin: 0; font-size: 14px; line-height: 1.65; color: var(--color-text-dim); }
-.ds__note strong { color: var(--color-text); }
-@media (max-width: 760px) { .ds__grid { grid-template-columns: 1fr; } }
+.ds__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.ds__card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 250ms var(--ease-out), transform 300ms var(--ease-spring);
+}
+
+.ds__card:hover {
+    border-color: var(--color-gold-dim);
+}
+
+.ds__card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.ds__card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.ds__card p {
+    margin: 0;
+    color: var(--color-text-dim);
+    font-size: 14.5px;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.ds__note {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-top: 16px;
+    padding: 22px 24px;
+    border-radius: 22px;
+    border: 1px dashed var(--color-gold-dim);
+    background: rgba(212, 169, 79, 0.05);
+}
+
+.ds__note svg {
+    flex-shrink: 0;
+    color: var(--color-gold);
+    margin-top: 2px;
+}
+
+.ds__note p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-text-dim);
+}
+
+.ds__note strong {
+    color: var(--color-text);
+}
+
+@media (max-width: 760px) {
+    .ds__grid {
+        grid-template-columns: 1fr;
+    }
+}
