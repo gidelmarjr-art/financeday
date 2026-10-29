@@ -17,7 +17,9 @@ export default function DashboardLayout() {
   const [query, setQuery] = useState("");
   const { pathname } = useLocation();
 
-  useEffect(() => setQuery(""), [pathname]);
+  useEffect(() => {
+    setQuery("");
+  }, [pathname]);
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {

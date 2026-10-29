@@ -14,9 +14,11 @@ html {
 
 body {
   margin: 0;
-  background: radial-gradient(circle at 15% 0%, #101a30 0%, var(--color-bg) 55%);
+  background: radial-gradient(circle at 20% 0%, #111c33 0%, var(--color-bg) 60%);
   color: var(--color-text);
   font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 [id] {

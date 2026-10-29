@@ -33,7 +33,11 @@ export default function Dashboard() {
   // Entrada orquestrada: uma vez por sessão (depois, trocar de aba não repete).
   const [playIntro] = useState(() => !intro.played);
   const introEnd = useRef(Date.now() + 520);
-  useEffect(() => () => { intro.played = true; }, []);
+  useEffect(() => {
+    return () => {
+      intro.played = true;
+    };
+  }, []);
 
   const fiatPicks = OVERVIEW_FIAT.map((c) => byKey[c]).filter(Boolean);
   const cryptoPicks = OVERVIEW_CRYPTO.map((id) => byKey[`crypto:${id}`]).filter(Boolean);

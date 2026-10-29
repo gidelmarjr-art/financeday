@@ -38,7 +38,8 @@ function FlapChar({ char, delay = 0 }) {
   return <span className={`flap-char ${active ? "flap-char--active" : ""}`}>{display}</span>;
 }
 
-function FlapTile({ code, label, value, pct, up, size = "md" }) {
+function FlapTile({ code, label, value = "", pct = 0, up = true, size = "md" }) {
+  const safeValue = String(value ?? "");
   return (
     <div className={`flap-tile flap-tile--${size}`}>
       <div className="flap-tile__seam" aria-hidden="true" />
@@ -46,22 +47,22 @@ function FlapTile({ code, label, value, pct, up, size = "md" }) {
         {code} <span>· {label}</span>
       </div>
       <div className="flap-tile__value">
-        {value.split("").map((c, i) => (
+        {safeValue.split("").map((c, i) => (
           <FlapChar key={i} char={c} delay={i * 55 + Math.random() * 120} />
         ))}
       </div>
       <div className={`flap-tile__pct ${up ? "is-up" : "is-down"}`}>
         {up ? <ArrowUpRight size={13} /> : <ArrowDownRight size={13} />}
-        {Math.abs(pct).toFixed(2)}%
+        {Math.abs(Number(pct) || 0).toFixed(2)}%
       </div>
     </div>
   );
 }
 
-export default function FlapBoard({ items, size = "md" }) {
+export default function FlapBoard({ items = [], size = "md" }) {
   return (
     <div className="flap-board">
-      {items.map((item) => (
+      {(items || []).map((item) => (
         <FlapTile key={item.code} {...item} size={size} />
       ))}
     </div>

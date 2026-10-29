@@ -27,7 +27,10 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (!onHome) return setActive("");
+    if (!onHome) {
+      setActive("");
+      return;
+    }
     const nodes = SECTIONS.map((s) => document.getElementById(s.id)).filter(Boolean);
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),

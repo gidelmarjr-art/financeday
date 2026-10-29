@@ -7,7 +7,10 @@ import Footer from "../../components/layout/Footer";
 function useScrollToHash() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    if (!hash) return window.scrollTo(0, 0);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
     const el = document.getElementById(hash.slice(1));
     if (el) requestAnimationFrame(() => el.scrollIntoView());
   }, [pathname, hash]);
