@@ -6,7 +6,13 @@ export default function Footer() {
   const { fiatStatus, cryptoStatus } = useMarket();
   const chip = (label, status) => (
     <span className={`lp-live ${status === "success" ? "is-live" : ""}`}>
-      <i />{label}: {status === "success" ? "ao vivo" : status === "loading" ? "conectando…" : "indisponível"}
+      <i />
+      {label}:{" "}
+      {status === "success"
+        ? "ao vivo"
+        : status === "loading"
+          ? "conectando…"
+          : "indisponível"}
     </span>
   );
 
@@ -15,9 +21,17 @@ export default function Footer() {
       <div className="container">
         <div className="footer__top">
           <div className="footer__brand">
-            <div className="footer__logo"><span className="footer__mark">F</span>Finance<span>Day</span></div>
-            <p>Câmbio e criptomoedas em tempo real, com histórico, conversor e leitura automática — num só painel.</p>
-            <div className="footer__status" aria-label="Estado das fontes de dados">
+            <div className="footer__logo">
+              <span className="footer__mark">F</span>Finance<span>Day</span>
+            </div>
+            <p>
+              Câmbio e criptomoedas em tempo real, com histórico, conversor e
+              leitura automática — num só painel.
+            </p>
+            <div
+              className="footer__status"
+              aria-label="Estado das fontes de dados"
+            >
               {chip("Câmbio", fiatStatus)}
               {chip("Cripto", cryptoStatus)}
             </div>
@@ -41,16 +55,26 @@ export default function Footer() {
           <nav className="footer__col" aria-label="Projeto">
             <span className="footer__heading">Projeto</span>
             <NavLink to="/sobre">Sobre</NavLink>
-            <a href="#" onClick={(e) => e.preventDefault()}>Repositório no GitHub</a>
+            <a
+              href="https://github.com/gidelmarjr-art/financeday"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Repositório no GitHub
+            </a>
           </nav>
         </div>
 
         <div className="footer__bottom">
           <span>© 2026 FinanceDay — projeto de portfólio.</span>
-          <span>Cotações de referência; não constituem recomendação de investimento.</span>
+          <span>
+            Cotações de referência; não constituem recomendação de investimento.
+          </span>
         </div>
       </div>
-      <div className="footer__mark-big" aria-hidden="true">FINANCEDAY</div>
+      <div className="footer__mark-big" aria-hidden="true">
+        FINANCEDAY
+      </div>
     </footer>
   );
 }
